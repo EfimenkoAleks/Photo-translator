@@ -8,11 +8,11 @@
 import SwiftUI
 import Combine
 
-class OnboardingCoordinator: Coordinarot {
+final class OnboardingCoordinator: Coordinarot {
     
     var rootViewController: UINavigationController?
-    var childCoordinators: [Coordinarot] = []
-    var hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>
+    private var childCoordinators: [Coordinarot] = []
+    private var hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>
     
     init(hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>) {
         self.hasSeenOnboarding = hasSeenOnboarding

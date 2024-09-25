@@ -8,14 +8,13 @@
 import SwiftUI
 import Combine
 
-class SecondTabCoordinator: Coordinarot {
+final class SecondTabCoordinator: Coordinarot {
     
-    var rootViewController: UINavigationController
-    var hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>
+    var rootViewController: UINavigationController?
+    private var hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>
     
     init(hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>) {
         self.hasSeenOnboarding = hasSeenOnboarding
-        rootViewController = UINavigationController()
     }
  
     func start() {
@@ -24,7 +23,7 @@ class SecondTabCoordinator: Coordinarot {
             self?.hasSeenOnboarding.send(.camera)
         })
         let vc = UIHostingController(rootView: first)
-        rootViewController.setViewControllers([vc], animated: false)
+        rootViewController?.setViewControllers([vc], animated: false)
     }
 }
 

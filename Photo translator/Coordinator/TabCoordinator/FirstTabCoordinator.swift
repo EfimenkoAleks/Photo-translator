@@ -12,14 +12,13 @@ enum FirstTabEvent {
     case language, gallery, policy, home, removeChild
 }
 
-class FirstTabCoordinator: Coordinarot {
+final class FirstTabCoordinator: Coordinarot {
     
-    var rootViewController: UINavigationController
-    var hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>
+    var rootViewController: UINavigationController?
+    private var hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>
     
     init(hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>) {
         self.hasSeenOnboarding = hasSeenOnboarding
-        rootViewController = UINavigationController()
     }
     
     func start() {
@@ -28,7 +27,7 @@ class FirstTabCoordinator: Coordinarot {
             self?.eventOccurred(with: transition)
         }
         let vc = UIHostingController(rootView: first)
-        rootViewController.setViewControllers([vc], animated: false)
+        rootViewController?.setViewControllers([vc], animated: false)
     }
 }
 

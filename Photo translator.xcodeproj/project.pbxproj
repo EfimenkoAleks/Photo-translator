@@ -30,6 +30,9 @@
 		CE1750192CA165EC003FF3AC /* ListPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1750182CA165EC003FF3AC /* ListPhotoCell.swift */; };
 		CE17501B2CA183FC003FF3AC /* DP_HomeMenuEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE17501A2CA183FC003FF3AC /* DP_HomeMenuEvent.swift */; };
 		CE17501D2CA1A26E003FF3AC /* DP_HomeModelPickerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE17501C2CA1A26E003FF3AC /* DP_HomeModelPickerEvent.swift */; };
+		CE1750202CA2BD22003FF3AC /* DP_CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE17501F2CA2BD22003FF3AC /* DP_CustomTabBar.swift */; };
+		CE1750222CA2BD5A003FF3AC /* DP_TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1750212CA2BD5A003FF3AC /* DP_TabBarController.swift */; };
+		CE1750242CA2BDB6003FF3AC /* DP_TabBarSelectedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1750232CA2BDB6003FF3AC /* DP_TabBarSelectedItem.swift */; };
 		CE37C89C2C982223001065DA /* HomeDetailNextCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37C89B2C982223001065DA /* HomeDetailNextCoordinator.swift */; };
 		CE37C8A32C99B0DF001065DA /* HomeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37C8A22C99B0DF001065DA /* HomeDetailViewModel.swift */; };
 		CE37C8A62C99BF6C001065DA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37C8A52C99BF6C001065DA /* HomeViewModel.swift */; };
@@ -88,6 +91,9 @@
 		CE1750182CA165EC003FF3AC /* ListPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPhotoCell.swift; sourceTree = "<group>"; };
 		CE17501A2CA183FC003FF3AC /* DP_HomeMenuEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DP_HomeMenuEvent.swift; sourceTree = "<group>"; };
 		CE17501C2CA1A26E003FF3AC /* DP_HomeModelPickerEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DP_HomeModelPickerEvent.swift; sourceTree = "<group>"; };
+		CE17501F2CA2BD22003FF3AC /* DP_CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DP_CustomTabBar.swift; sourceTree = "<group>"; };
+		CE1750212CA2BD5A003FF3AC /* DP_TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DP_TabBarController.swift; sourceTree = "<group>"; };
+		CE1750232CA2BDB6003FF3AC /* DP_TabBarSelectedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DP_TabBarSelectedItem.swift; sourceTree = "<group>"; };
 		CE37C89B2C982223001065DA /* HomeDetailNextCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailNextCoordinator.swift; sourceTree = "<group>"; };
 		CE37C8A22C99B0DF001065DA /* HomeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewModel.swift; sourceTree = "<group>"; };
 		CE37C8A52C99BF6C001065DA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -221,6 +227,7 @@
 		CE0EE2092C933639003C4E19 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CE17501E2CA2BC69003FF3AC /* TabBar */,
 				CE37C8A12C99B0AD001065DA /* HomeDetail */,
 				CE37C8A42C99BF4B001065DA /* Home */,
 				CE37C8A72C99BFE0001065DA /* Camera */,
@@ -235,6 +242,16 @@
 				CE1750182CA165EC003FF3AC /* ListPhotoCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		CE17501E2CA2BC69003FF3AC /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				CE17501F2CA2BD22003FF3AC /* DP_CustomTabBar.swift */,
+				CE1750212CA2BD5A003FF3AC /* DP_TabBarController.swift */,
+				CE1750232CA2BDB6003FF3AC /* DP_TabBarSelectedItem.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		CE37C89D2C997091001065DA /* CoordinatorProtocol */ = {
@@ -572,6 +589,7 @@
 				CE37C89C2C982223001065DA /* HomeDetailNextCoordinator.swift in Sources */,
 				CE0EE2032C931CCE003C4E19 /* ThirdTabCoordinator.swift in Sources */,
 				CE5ED6222C9C26C60077DB35 /* FileManager.swift in Sources */,
+				CE1750222CA2BD5A003FF3AC /* DP_TabBarController.swift in Sources */,
 				CE1750192CA165EC003FF3AC /* ListPhotoCell.swift in Sources */,
 				CE0EE1DC2C91D0A8003C4E19 /* AppDelegate.swift in Sources */,
 				CE37C8A92C99BFFC001065DA /* CameraViewModel.swift in Sources */,
@@ -581,10 +599,12 @@
 				CE5ED62B2C9C30BE0077DB35 /* DP_PhotoManager.swift in Sources */,
 				CE0EE20F2C933827003C4E19 /* ThirdTabView.swift in Sources */,
 				CE5ED6282C9C2CFE0077DB35 /* Preferences.swift in Sources */,
+				CE1750242CA2BDB6003FF3AC /* DP_TabBarSelectedItem.swift in Sources */,
 				CE5ED63F2C9C70470077DB35 /* Block.swift in Sources */,
 				CE3B72B62C9D7F7300798798 /* DP_TabBarItem.swift in Sources */,
 				CE0EE20D2C9337EF003C4E19 /* SecondTabView.swift in Sources */,
 				CE0EE1DE2C91D0A8003C4E19 /* SceneDelegate.swift in Sources */,
+				CE1750202CA2BD22003FF3AC /* DP_CustomTabBar.swift in Sources */,
 				CE5ED6362C9C329C0077DB35 /* DP_VideoCaptureManager.swift in Sources */,
 				CE0EE2012C931C27003C4E19 /* SecondTabCoordinator.swift in Sources */,
 				CE3B72AE2C9D72EC00798798 /* UIImage+Extension.swift in Sources */,

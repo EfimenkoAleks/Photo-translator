@@ -8,7 +8,7 @@
 import Foundation
 
 enum DP_TabBarItemType: Int {
-    case photo, text, camera
+    case photo, camera, text
  
     var item: DP_TabBarItem {
         switch self {

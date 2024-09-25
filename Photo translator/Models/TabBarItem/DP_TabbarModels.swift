@@ -11,24 +11,24 @@ typealias DP_TabbarModelsExtension = DP_TabbarModels
 
 enum DP_TabbarModels: CaseIterable {
     case photo
-    case text
     case camera
+    case text
 }
 
 extension DP_TabbarModelsExtension {
     var image: String {
         switch self {
         case .photo: return "homeItem"
-        case .text: return "typeItem"
         case .camera: return "imageItem"
+        case .text: return "typeItem"
         }
     }
 
     var title: String {
         switch self {
         case .photo: return ""
-        case .text: return ""
         case .camera: return ""
+        case .text: return ""
         }
     }
 }
