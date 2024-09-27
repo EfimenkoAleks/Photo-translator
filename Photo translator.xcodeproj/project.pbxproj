@@ -33,6 +33,10 @@
 		CE1750202CA2BD22003FF3AC /* DP_CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE17501F2CA2BD22003FF3AC /* DP_CustomTabBar.swift */; };
 		CE1750222CA2BD5A003FF3AC /* DP_TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1750212CA2BD5A003FF3AC /* DP_TabBarController.swift */; };
 		CE1750242CA2BDB6003FF3AC /* DP_TabBarSelectedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1750232CA2BDB6003FF3AC /* DP_TabBarSelectedItem.swift */; };
+		CE1750272CA6EEF2003FF3AC /* RoundedTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1750262CA6EEF2003FF3AC /* RoundedTextView.swift */; };
+		CE1750292CA6EF1E003FF3AC /* LanguagePickerWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1750282CA6EF1E003FF3AC /* LanguagePickerWheel.swift */; };
+		CE17502B2CA6EF40003FF3AC /* TranslateButtonsLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE17502A2CA6EF40003FF3AC /* TranslateButtonsLoad.swift */; };
+		CE17502D2CA6EF5E003FF3AC /* LoadText.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE17502C2CA6EF5E003FF3AC /* LoadText.swift */; };
 		CE37C89C2C982223001065DA /* HomeDetailNextCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37C89B2C982223001065DA /* HomeDetailNextCoordinator.swift */; };
 		CE37C8A32C99B0DF001065DA /* HomeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37C8A22C99B0DF001065DA /* HomeDetailViewModel.swift */; };
 		CE37C8A62C99BF6C001065DA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37C8A52C99BF6C001065DA /* HomeViewModel.swift */; };
@@ -94,6 +98,10 @@
 		CE17501F2CA2BD22003FF3AC /* DP_CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DP_CustomTabBar.swift; sourceTree = "<group>"; };
 		CE1750212CA2BD5A003FF3AC /* DP_TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DP_TabBarController.swift; sourceTree = "<group>"; };
 		CE1750232CA2BDB6003FF3AC /* DP_TabBarSelectedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DP_TabBarSelectedItem.swift; sourceTree = "<group>"; };
+		CE1750262CA6EEF2003FF3AC /* RoundedTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedTextView.swift; sourceTree = "<group>"; };
+		CE1750282CA6EF1E003FF3AC /* LanguagePickerWheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePickerWheel.swift; sourceTree = "<group>"; };
+		CE17502A2CA6EF40003FF3AC /* TranslateButtonsLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateButtonsLoad.swift; sourceTree = "<group>"; };
+		CE17502C2CA6EF5E003FF3AC /* LoadText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadText.swift; sourceTree = "<group>"; };
 		CE37C89B2C982223001065DA /* HomeDetailNextCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailNextCoordinator.swift; sourceTree = "<group>"; };
 		CE37C8A22C99B0DF001065DA /* HomeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewModel.swift; sourceTree = "<group>"; };
 		CE37C8A52C99BF6C001065DA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -254,6 +262,17 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		CE1750252CA6EED7003FF3AC /* SubView */ = {
+			isa = PBXGroup;
+			children = (
+				CE1750262CA6EEF2003FF3AC /* RoundedTextView.swift */,
+				CE1750282CA6EF1E003FF3AC /* LanguagePickerWheel.swift */,
+				CE17502A2CA6EF40003FF3AC /* TranslateButtonsLoad.swift */,
+				CE17502C2CA6EF5E003FF3AC /* LoadText.swift */,
+			);
+			path = SubView;
+			sourceTree = "<group>";
+		};
 		CE37C89D2C997091001065DA /* CoordinatorProtocol */ = {
 			isa = PBXGroup;
 			children = (
@@ -317,6 +336,7 @@
 		CE37C8AA2C99C0DC001065DA /* Translate */ = {
 			isa = PBXGroup;
 			children = (
+				CE1750252CA6EED7003FF3AC /* SubView */,
 				CE0EE20E2C933827003C4E19 /* ThirdTabView.swift */,
 				CE37C8AB2C99C0FA001065DA /* TranslateViewModel.swift */,
 			);
@@ -595,6 +615,7 @@
 				CE37C8A92C99BFFC001065DA /* CameraViewModel.swift in Sources */,
 				CE0EE1F52C91D27F003C4E19 /* MainCoordinator.swift in Sources */,
 				CE5ED6382C9C32BD0077DB35 /* H264Encoder.swift in Sources */,
+				CE1750292CA6EF1E003FF3AC /* LanguagePickerWheel.swift in Sources */,
 				CE37C8B12C99C50F001065DA /* ImageStorage.swift in Sources */,
 				CE5ED62B2C9C30BE0077DB35 /* DP_PhotoManager.swift in Sources */,
 				CE0EE20F2C933827003C4E19 /* ThirdTabView.swift in Sources */,
@@ -609,10 +630,13 @@
 				CE0EE2012C931C27003C4E19 /* SecondTabCoordinator.swift in Sources */,
 				CE3B72AE2C9D72EC00798798 /* UIImage+Extension.swift in Sources */,
 				CE0EE1FC2C91D35C003C4E19 /* NavigationTranisitionStylel.swift in Sources */,
+				CE17502B2CA6EF40003FF3AC /* TranslateButtonsLoad.swift in Sources */,
 				CE5ED6412C9C716E0077DB35 /* String+Extension.swift in Sources */,
 				CE37C8A32C99B0DF001065DA /* HomeDetailViewModel.swift in Sources */,
 				CE37C8AC2C99C0FA001065DA /* TranslateViewModel.swift in Sources */,
+				CE17502D2CA6EF5E003FF3AC /* LoadText.swift in Sources */,
 				CE17501D2CA1A26E003FF3AC /* DP_HomeModelPickerEvent.swift in Sources */,
+				CE1750272CA6EEF2003FF3AC /* RoundedTextView.swift in Sources */,
 				CE5ED6312C9C31900077DB35 /* DP_TranslateManager.swift in Sources */,
 				CE0EE20B2C9337BD003C4E19 /* FirstTabView.swift in Sources */,
 				CE3B72B02C9D733200798798 /* UIView+Extension.swift in Sources */,
