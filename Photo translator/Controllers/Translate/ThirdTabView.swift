@@ -12,7 +12,7 @@ struct ThirdTabView: View {
     @ObservedObject var viewModel: TranslateViewModel
     @State private var content1 = ""
     @State private var content2 = ""
-    var doneRequested: () -> Void
+ //   var doneRequested: () -> Void
     
     var body: some View {
         
@@ -29,7 +29,7 @@ struct ThirdTabView: View {
                     }
                     
                     Button {
-                        
+                        viewModel.sendTranslate()
                     } label: {
                         Label("", systemImage: "arrowshape.right.fill")
                             .foregroundStyle(.black)
@@ -43,6 +43,15 @@ struct ThirdTabView: View {
                 RoundedTextView(content: $content2, placeholderText: $viewModel.placeholder, height: viewModel.whitScreen() / 3)
                 
                 LoadText(loadingText: $viewModel.loadingText)
+            }
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                }
             }
         }
     }

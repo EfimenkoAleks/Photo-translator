@@ -8,6 +8,10 @@
 import SwiftUI
 import Combine
 
+enum SecondTabEvent {
+    case lastPhoto, home, removeChild
+}
+
 final class SecondTabCoordinator: Coordinarot {
     
     var rootViewController: UINavigationController?
@@ -19,11 +23,39 @@ final class SecondTabCoordinator: Coordinarot {
  
     func start() {
         let vModel = CameraViewModel()
-        let first = SecondTabView(viewModel: vModel, doneRequested: { [weak self] in
-            self?.hasSeenOnboarding.send(.camera)
-        })
+        vModel.eventHendler = { [weak self] event in
+            self?.eventOccurred(with: event)
+        }
+        let first = SecondTabView(viewModel: vModel) 
         let vc = UIHostingController(rootView: first)
         rootViewController?.setViewControllers([vc], animated: false)
     }
 }
 
+extension SecondTabCoordinator {
+    
+    func eventOccurred(with type: SecondTabEvent) {
+        switch type {
+        case .lastPhoto:
+            print("last photo")
+//                        guard let controller = controller else { return }
+//                        let child = SM_PayViewController()
+//                        child.modalPresentationStyle = .fullScreen
+//                        child.isModalInPresentation = true
+//                        child.preferredContentSize = controller.view.frame.size
+//                        controller.present(child, animated: true)
+//                        child.eventHandlerBack = { [weak self] _ in
+//                            self?.sm_eventOccurred(with: .removeChild)
+//                        }
+            break
+            
+        case .home:
+            hasSeenOnboarding.send(.home)
+            
+        case .removeChild:
+//                        guard let controller = controller else { return }
+//                        controller.removeChild()
+            break
+        }
+    }
+}

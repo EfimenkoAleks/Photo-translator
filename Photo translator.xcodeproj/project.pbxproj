@@ -65,6 +65,8 @@
 		CE5ED6432C9C71DF0077DB35 /* DP_ConstantUserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5ED6422C9C71DF0077DB35 /* DP_ConstantUserDefaultsKeys.swift */; };
 		CE5ED6462C9CAC330077DB35 /* DP_Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5ED6452C9CAC330077DB35 /* DP_Colors.swift */; };
 		CE5ED6482C9CAC680077DB35 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5ED6472C9CAC680077DB35 /* UIColor+Extension.swift */; };
+		CECD8D032CABEDC0003ADDD1 /* PhotoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD8D022CABEDC0003ADDD1 /* PhotoButton.swift */; };
+		CECD8D052CABEDE8003ADDD1 /* CameraControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD8D042CABEDE8003ADDD1 /* CameraControlView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,6 +132,8 @@
 		CE5ED6422C9C71DF0077DB35 /* DP_ConstantUserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DP_ConstantUserDefaultsKeys.swift; sourceTree = "<group>"; };
 		CE5ED6452C9CAC330077DB35 /* DP_Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DP_Colors.swift; sourceTree = "<group>"; };
 		CE5ED6472C9CAC680077DB35 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		CECD8D022CABEDC0003ADDD1 /* PhotoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoButton.swift; sourceTree = "<group>"; };
+		CECD8D042CABEDE8003ADDD1 /* CameraControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraControlView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,6 +331,7 @@
 		CE37C8A72C99BFE0001065DA /* Camera */ = {
 			isa = PBXGroup;
 			children = (
+				CECD8D012CABEDAD003ADDD1 /* SubViews */,
 				CE0EE20C2C9337EF003C4E19 /* SecondTabView.swift */,
 				CE37C8A82C99BFFC001065DA /* CameraViewModel.swift */,
 			);
@@ -449,6 +454,15 @@
 				CE17501C2CA1A26E003FF3AC /* DP_HomeModelPickerEvent.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		CECD8D012CABEDAD003ADDD1 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				CECD8D022CABEDC0003ADDD1 /* PhotoButton.swift */,
+				CECD8D042CABEDE8003ADDD1 /* CameraControlView.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 		EFADED414626CA0DD574EE78 /* Pods */ = {
@@ -602,6 +616,7 @@
 				CE0EE2112C9339FA003C4E19 /* HomeDetailCoordinator.swift in Sources */,
 				CE5ED62E2C9C311C0077DB35 /* DP_TextRecognizedManager.swift in Sources */,
 				CE5ED6462C9CAC330077DB35 /* DP_Colors.swift in Sources */,
+				CECD8D032CABEDC0003ADDD1 /* PhotoButton.swift in Sources */,
 				CE0EE1F72C91D2C6003C4E19 /* NavCoordinator.swift in Sources */,
 				CE3B72AC2C9D729800798798 /* DP_BaseGradientView.swift in Sources */,
 				CE0EE1FF2C931C0A003C4E19 /* FirstTabCoordinator.swift in Sources */,
@@ -614,6 +629,7 @@
 				CE0EE1DC2C91D0A8003C4E19 /* AppDelegate.swift in Sources */,
 				CE37C8A92C99BFFC001065DA /* CameraViewModel.swift in Sources */,
 				CE0EE1F52C91D27F003C4E19 /* MainCoordinator.swift in Sources */,
+				CECD8D052CABEDE8003ADDD1 /* CameraControlView.swift in Sources */,
 				CE5ED6382C9C32BD0077DB35 /* H264Encoder.swift in Sources */,
 				CE1750292CA6EF1E003FF3AC /* LanguagePickerWheel.swift in Sources */,
 				CE37C8B12C99C50F001065DA /* ImageStorage.swift in Sources */,

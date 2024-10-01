@@ -43,6 +43,10 @@ final class TranslateViewModel: ObservableObject {
         return firstt ?? TranslateLanguage.english
     }
     
+    func sendTranslate() {
+        
+    }
+    
 }
 
 struct Language: Identifiable {

@@ -19,7 +19,7 @@ final class ThirdTabCoordinator: Coordinarot {
     
     func start() {
         let vModel = TranslateViewModel()
-        let vc = UIHostingController(rootView: ThirdTabView(viewModel: vModel, doneRequested: {}))
+        let vc = UIHostingController(rootView: ThirdTabView(viewModel: vModel))
         rootViewController?.setViewControllers([vc], animated: false)
     }
 }
