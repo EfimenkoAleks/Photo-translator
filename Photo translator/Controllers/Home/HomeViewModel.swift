@@ -8,7 +8,6 @@
 import Combine
 import SwiftUI
 import UIKit
-import AVFoundation
 import Vision
 import MLKitTranslate
 
@@ -18,10 +17,9 @@ final class HomeViewModel: ObservableObject {
     @Published var photos: [HomeModel]
     @Published var pinedPhotos: [HomeModel]
   //  @Published var name: String?
-    var storage: ImageStorage
+    private var storage: ImageStorage
     private var cancellables = Set<AnyCancellable>()
  //   private var photoManager: DP_PhotoManager
-    private var ligth: AVCaptureDevice.FlashMode = .off
     
     init(storage: ImageStorage = ImageStorage.shared) {
         

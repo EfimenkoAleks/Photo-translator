@@ -13,9 +13,8 @@ struct SecondTabView: View {
     
     var body: some View {
         ZStack {
-            Image(uiImage: viewModel.stream)
-                .resizable()
-                .scaledToFit()
+            
+            CameraView(image: $viewModel.currentFrame, placeholder: $viewModel.stream)
                 
             CameraControlView(lastPhoto: $viewModel.photo, eventHendler: { event in
                 viewModel.cameraEvents(event: event)
@@ -36,11 +35,40 @@ struct SecondTabView: View {
                 }
             }
         }
+        .onAppear {
+            viewModel.dp_resetImage()
+        }
+        .onDisappear {
+            viewModel.dp_stopSessino()
+        }
     }
 }
 
 struct SecondTabView_Previews: PreviewProvider {
     static var previews: some View {
         SecondTabView(viewModel: CameraViewModel())
+    }
+}
+
+struct CameraView: View {
+    
+    @Binding var image: CGImage?
+    @Binding var placeholder: UIImage
+    
+    var body: some View {
+        GeometryReader { geometry in
+            if let image = image {
+                Image(decorative: image, scale: 1, orientation: .right)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: geometry.size.width,
+                           height: geometry.size.height)
+                
+            } else {
+                Image(uiImage: placeholder)
+                    .resizable()
+                    .scaledToFit()
+            }
+        }
     }
 }

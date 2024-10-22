@@ -25,13 +25,16 @@ struct FirstTabView: View {
                     ListPhotoCell(image: viewModel.convertImage(data: viewModel.photos[0].image), photo: photo)
                     
                         .listRowSeparator(.hidden)
+//                        .onTapGesture {
+//                            print("")
+//                        }
                 }
                 .onDelete(perform: self.deleteItems)
                 .listRowBackground(Color.clear)
                 
             }
             .listRowSeparatorTint(.clear)
-            .scrollContentBackground(.hidden)
+   //         .scrollContentBackground(.hidden)
             .background(Color.clear)
             .padding(.top, -10)
             .padding(.bottom, -10)

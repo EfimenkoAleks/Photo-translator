@@ -65,6 +65,9 @@
 		CE5ED6432C9C71DF0077DB35 /* DP_ConstantUserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5ED6422C9C71DF0077DB35 /* DP_ConstantUserDefaultsKeys.swift */; };
 		CE5ED6462C9CAC330077DB35 /* DP_Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5ED6452C9CAC330077DB35 /* DP_Colors.swift */; };
 		CE5ED6482C9CAC680077DB35 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5ED6472C9CAC680077DB35 /* UIColor+Extension.swift */; };
+		CE6DCEE92CB7DD05006B63DA /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DCEE82CB7DD05006B63DA /* CameraManager.swift */; };
+		CE6DCEEB2CB7E0E7006B63DA /* CMSampleBuffer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DCEEA2CB7E0E7006B63DA /* CMSampleBuffer+Extension.swift */; };
+		CE6DCEED2CB7E149006B63DA /* CIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DCEEC2CB7E149006B63DA /* CIImage+Extension.swift */; };
 		CECD8D032CABEDC0003ADDD1 /* PhotoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD8D022CABEDC0003ADDD1 /* PhotoButton.swift */; };
 		CECD8D052CABEDE8003ADDD1 /* CameraControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD8D042CABEDE8003ADDD1 /* CameraControlView.swift */; };
 /* End PBXBuildFile section */
@@ -132,6 +135,9 @@
 		CE5ED6422C9C71DF0077DB35 /* DP_ConstantUserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DP_ConstantUserDefaultsKeys.swift; sourceTree = "<group>"; };
 		CE5ED6452C9CAC330077DB35 /* DP_Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DP_Colors.swift; sourceTree = "<group>"; };
 		CE5ED6472C9CAC680077DB35 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		CE6DCEE82CB7DD05006B63DA /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
+		CE6DCEEA2CB7E0E7006B63DA /* CMSampleBuffer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMSampleBuffer+Extension.swift"; sourceTree = "<group>"; };
+		CE6DCEEC2CB7E149006B63DA /* CIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CIImage+Extension.swift"; sourceTree = "<group>"; };
 		CECD8D022CABEDC0003ADDD1 /* PhotoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoButton.swift; sourceTree = "<group>"; };
 		CECD8D042CABEDE8003ADDD1 /* CameraControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraControlView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -351,6 +357,7 @@
 		CE37C8AF2C99C4BD001065DA /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				CE6DCEE72CB7DCF4006B63DA /* CameraManager */,
 				CE5ED6342C9C32340077DB35 /* VideoCaptureManager */,
 				CE5ED62F2C9C31770077DB35 /* TranslateManager */,
 				CE5ED62C2C9C31030077DB35 /* TextRecognizer */,
@@ -440,6 +447,8 @@
 				CE5ED6472C9CAC680077DB35 /* UIColor+Extension.swift */,
 				CE3B72AD2C9D72EC00798798 /* UIImage+Extension.swift */,
 				CE3B72AF2C9D733200798798 /* UIView+Extension.swift */,
+				CE6DCEEA2CB7E0E7006B63DA /* CMSampleBuffer+Extension.swift */,
+				CE6DCEEC2CB7E149006B63DA /* CIImage+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -454,6 +463,14 @@
 				CE17501C2CA1A26E003FF3AC /* DP_HomeModelPickerEvent.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		CE6DCEE72CB7DCF4006B63DA /* CameraManager */ = {
+			isa = PBXGroup;
+			children = (
+				CE6DCEE82CB7DD05006B63DA /* CameraManager.swift */,
+			);
+			path = CameraManager;
 			sourceTree = "<group>";
 		};
 		CECD8D012CABEDAD003ADDD1 /* SubViews */ = {
@@ -609,9 +626,11 @@
 				CE5ED6262C9C2CD50077DB35 /* PreferencesProtocol.swift in Sources */,
 				CE5ED63D2C9C4D250077DB35 /* Data+Extension.swift in Sources */,
 				CE0EE1F32C91D23F003C4E19 /* Coordinator.swift in Sources */,
+				CE6DCEEB2CB7E0E7006B63DA /* CMSampleBuffer+Extension.swift in Sources */,
 				CE0EE1FA2C91D315003C4E19 /* NavigationRouter.swift in Sources */,
 				CE0EE2082C93207B003C4E19 /* HomeView.swift in Sources */,
 				CE37C8A62C99BF6C001065DA /* HomeViewModel.swift in Sources */,
+				CE6DCEE92CB7DD05006B63DA /* CameraManager.swift in Sources */,
 				CE0EE1F12C91D1FE003C4E19 /* AplicationCoordinator.swift in Sources */,
 				CE0EE2112C9339FA003C4E19 /* HomeDetailCoordinator.swift in Sources */,
 				CE5ED62E2C9C311C0077DB35 /* DP_TextRecognizedManager.swift in Sources */,
@@ -661,6 +680,7 @@
 				CE5ED6432C9C71DF0077DB35 /* DP_ConstantUserDefaultsKeys.swift in Sources */,
 				CE5ED6482C9CAC680077DB35 /* UIColor+Extension.swift in Sources */,
 				CE0EE2132C934557003C4E19 /* OnboardingCoordinator.swift in Sources */,
+				CE6DCEED2CB7E149006B63DA /* CIImage+Extension.swift in Sources */,
 				CE3B72B42C9D7EF000798798 /* DP_TabBarItemType.swift in Sources */,
 				CE37C8AE2C99C362001065DA /* HomeModel.swift in Sources */,
 			);
@@ -730,7 +750,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -784,7 +804,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -805,10 +825,11 @@
 				DEVELOPMENT_TEAM = 364PACBHLP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Photo translator/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "App nead camera";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -833,10 +854,11 @@
 				DEVELOPMENT_TEAM = 364PACBHLP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Photo translator/Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "App nead camera";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

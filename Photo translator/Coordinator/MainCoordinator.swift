@@ -10,7 +10,8 @@ import Combine
 
 final class MainCoordinator: Coordinarot {
     
-    var window: UIWindow?
+ //   var window: UIWindow?
+    var rootViewController: UIViewController?
     var typeHandler: Block<(DP_TabBarSelectedItem)>?
     private var selectedTab: DP_TabBarSelectedItem
     private var hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>
@@ -23,7 +24,8 @@ final class MainCoordinator: Coordinarot {
     func start() {
         let vc = DP_TabBarController(hasSeenOnboarding: hasSeenOnboarding, selectedTab: selectedTab)
         vc.setSelectedTab()
-        window?.rootViewController = vc
+        rootViewController = vc
+  //      window?.rootViewController = vc
         vc.typeHandler = { [weak self] type in
             self?.typeHandler?(type)
         }

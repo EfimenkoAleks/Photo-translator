@@ -30,10 +30,9 @@ final class AplicationCoordinator: Coordinarot {
             switch navigate {
             case .main:
                 let mainCoordinator = MainCoordinator(hasSeenOnboarding: self.navigateOnboarding, selectedTab: self.selectedTab)
-                mainCoordinator.window = self.window
-                
                 mainCoordinator.start()
                 self.childCoordinator = [mainCoordinator]
+                self.window.rootViewController = mainCoordinator.rootViewController
                 mainCoordinator.typeHandler = { [weak self] type in
                     guard let self = self else { return }
                     self.selectedTab = type
