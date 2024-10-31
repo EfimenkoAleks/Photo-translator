@@ -65,6 +65,8 @@
 		CE5ED6432C9C71DF0077DB35 /* DP_ConstantUserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5ED6422C9C71DF0077DB35 /* DP_ConstantUserDefaultsKeys.swift */; };
 		CE5ED6462C9CAC330077DB35 /* DP_Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5ED6452C9CAC330077DB35 /* DP_Colors.swift */; };
 		CE5ED6482C9CAC680077DB35 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5ED6472C9CAC680077DB35 /* UIColor+Extension.swift */; };
+		CE6BA1EC2CC910EB00F5CE89 /* CameraPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6BA1EB2CC910EB00F5CE89 /* CameraPreview.swift */; };
+		CE6BA1EE2CD2323400F5CE89 /* CameraDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6BA1ED2CD2323400F5CE89 /* CameraDelegate.swift */; };
 		CE6DCEE92CB7DD05006B63DA /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DCEE82CB7DD05006B63DA /* CameraManager.swift */; };
 		CE6DCEEB2CB7E0E7006B63DA /* CMSampleBuffer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DCEEA2CB7E0E7006B63DA /* CMSampleBuffer+Extension.swift */; };
 		CE6DCEED2CB7E149006B63DA /* CIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DCEEC2CB7E149006B63DA /* CIImage+Extension.swift */; };
@@ -135,6 +137,8 @@
 		CE5ED6422C9C71DF0077DB35 /* DP_ConstantUserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DP_ConstantUserDefaultsKeys.swift; sourceTree = "<group>"; };
 		CE5ED6452C9CAC330077DB35 /* DP_Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DP_Colors.swift; sourceTree = "<group>"; };
 		CE5ED6472C9CAC680077DB35 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		CE6BA1EB2CC910EB00F5CE89 /* CameraPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPreview.swift; sourceTree = "<group>"; };
+		CE6BA1ED2CD2323400F5CE89 /* CameraDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraDelegate.swift; sourceTree = "<group>"; };
 		CE6DCEE82CB7DD05006B63DA /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		CE6DCEEA2CB7E0E7006B63DA /* CMSampleBuffer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMSampleBuffer+Extension.swift"; sourceTree = "<group>"; };
 		CE6DCEEC2CB7E149006B63DA /* CIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CIImage+Extension.swift"; sourceTree = "<group>"; };
@@ -340,6 +344,8 @@
 				CECD8D012CABEDAD003ADDD1 /* SubViews */,
 				CE0EE20C2C9337EF003C4E19 /* SecondTabView.swift */,
 				CE37C8A82C99BFFC001065DA /* CameraViewModel.swift */,
+				CE6BA1EB2CC910EB00F5CE89 /* CameraPreview.swift */,
+				CE6BA1ED2CD2323400F5CE89 /* CameraDelegate.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -625,6 +631,7 @@
 			files = (
 				CE5ED6262C9C2CD50077DB35 /* PreferencesProtocol.swift in Sources */,
 				CE5ED63D2C9C4D250077DB35 /* Data+Extension.swift in Sources */,
+				CE6BA1EC2CC910EB00F5CE89 /* CameraPreview.swift in Sources */,
 				CE0EE1F32C91D23F003C4E19 /* Coordinator.swift in Sources */,
 				CE6DCEEB2CB7E0E7006B63DA /* CMSampleBuffer+Extension.swift in Sources */,
 				CE0EE1FA2C91D315003C4E19 /* NavigationRouter.swift in Sources */,
@@ -675,6 +682,7 @@
 				CE5ED6312C9C31900077DB35 /* DP_TranslateManager.swift in Sources */,
 				CE0EE20B2C9337BD003C4E19 /* FirstTabView.swift in Sources */,
 				CE3B72B02C9D733200798798 /* UIView+Extension.swift in Sources */,
+				CE6BA1EE2CD2323400F5CE89 /* CameraDelegate.swift in Sources */,
 				CE3B72B22C9D7EAF00798798 /* DP_TabbarModels.swift in Sources */,
 				CE5ED63A2C9C32DF0077DB35 /* DP_VideoManager.swift in Sources */,
 				CE5ED6432C9C71DF0077DB35 /* DP_ConstantUserDefaultsKeys.swift in Sources */,
@@ -825,7 +833,7 @@
 				DEVELOPMENT_TEAM = 364PACBHLP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Photo translator/Info.plist";
-				INFOPLIST_KEY_NSCameraUsageDescription = "App nead camera";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera is used for capturing photos";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -854,7 +862,7 @@
 				DEVELOPMENT_TEAM = 364PACBHLP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Photo translator/Info.plist";
-				INFOPLIST_KEY_NSCameraUsageDescription = "App nead camera";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera is used for capturing photos";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;

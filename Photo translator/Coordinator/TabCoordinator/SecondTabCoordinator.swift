@@ -23,9 +23,9 @@ final class SecondTabCoordinator: Coordinarot {
  
     func start() {
         let vModel = CameraViewModel()
-        vModel.eventHendler = { [weak self] event in
-            self?.eventOccurred(with: event)
-        }
+//        vModel.eventHendler = { [weak self] event in
+//            self?.eventOccurred(with: event)
+//        }
         let first = SecondTabView(viewModel: vModel) 
         let vc = UIHostingController(rootView: first)
         rootViewController?.setViewControllers([vc], animated: false)

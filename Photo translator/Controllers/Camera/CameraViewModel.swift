@@ -9,130 +9,152 @@ import Combine
 import SwiftUI
 import AVFoundation
 import MLKitTranslate
+import Photos
 
 enum CameraEvent {
     case ligth, live, createPhoto, refresh, lastPhoto
 }
 
-final class CameraViewModel: ObservableObject {
-    
-    @Published var currentFrame: CGImage?
-    private var cameraManager: CameraManager
-    
-    @Published var photo: UIImage
-    @Published var stream: UIImage
-    
-    private var urlPhoto: URL?
-    private var currentLang: TranslateLanguage?
-    private var originalLang: TranslateLanguage?
-    var currentImage: UIImage?
-    var storage: ImageStorage
-    var eventHendler: Block<(SecondTabEvent)>?
-    private var ligth: AVCaptureDevice.FlashMode = .off
-    
-    init(storage: ImageStorage = ImageStorage.shared) {
-        
-        self.storage = storage
-            
-        cameraManager = CameraManager()
-        photo = UIImage(named: "girl")! //storage.photo
-        stream = UIImage(named: "girl")!
-       
-        Task {
-            await handleCameraPreviews()
-        }
-        }
-    
-    func dp_resetImage() {
-  //      dp_restartCondition()
-         cameraManager.startSession()
-//        dp_addVideo(captureSession: cameraManager.captureSession)
+class CameraViewModel: ObservableObject {
+ 
+  // Reference to the CameraManager.
+  @ObservedObject var cameraManager = CameraManager()
+ 
+  // Published properties to trigger UI updates.
+  @Published var isFlashOn = false
+    @Published var capturedImage: UIImage?
+  @Published var showAlertError = false
+  @Published var showSettingAlert = false
+  @Published var isPermissionGranted: Bool = false
+    @Published private var flashMode: AVCaptureDevice.FlashMode = .off
+ 
+  var alertError: Alert!
+
+  // Reference to the AVCaptureSession.
+  var session: AVCaptureSession = .init()
+
+  // Cancellable storage for Combine subscribers.
+  private var cancelables = Set<AnyCancellable>()
+ 
+  init() {
+    // Initialize the session with the cameraManager's session.
+    session = cameraManager.session
+  }
+
+  deinit {
+    // Deinitializer to stop capturing when the ViewModel is deallocated.
+    cameraManager.stopCapturing()
+  }
+ 
+  // Setup Combine bindings for handling publisher's emit values
+  func setupBindings() {
+      cameraManager.$shouldShowAlertView.sink { [weak self] value in
+      // Update alertError and showAlertError based on cameraManager's state.
+      self?.alertError = self?.cameraManager.alertError
+      self?.showAlertError = value
     }
+    .store(in: &cancelables)
+      
+      cameraManager.$capturedImage.sink { [weak self] image in
+            self?.capturedImage = image
+         }.store(in: &cancelables)
+  }
     
-    func dp_stopSessino() {
-        cameraManager.stopSesion()
+    // Call when the capture button tap
+    func captureImage() {
+//       requestGalleryPermission()
+   //    let permission = checkGalleryPermissionStatus()
+   //    if permission.rawValue != 2 {
+         cameraManager.captureImage()
+  //     }
     }
-    
-//    func dp_setStartLoadImage(newImage: UIImage) {
-//        cameraManager.stopSesion()
-//        self.currentImage = storage.dp_scaleAndOrient(image: newImage)
-//        guard let currentImage = self.currentImage else { return }
-//        self.dp_startRecognizedText(image: currentImage, isOriginalLang: true)
-//
-//        DispatchQueue.main.async { [weak self] in
-//            guard let self = self else { return }
-//            self.dp_setPreview()
-//        }
+
+    // Ask for the permission for photo library access
+//    func requestGalleryPermission() {
+//       PHPhotoLibrary.requestAuthorization { status in
+//         switch status {
+//         case .authorized:
+//            break
+//         case .denied:
+//            self.showSettingAlert = true
+//         default:
+//            break
+//         }
+//       }
 //    }
-    
-//    func dp_tapCamera() {
-//        dp_resetLanguage()
-//        cameraManager.dp_createPhoto(withLight: ligth)
-//        cameraManager.imageHanddler = { [weak self] newImage in
-//            guard let self = self else { return }
-//
-//   //         self.dp_addLoader()
-//            guard let data = newImage.jpegData(compressionQuality: 0.7) else { return }
-//
-//            self.urlPhoto = self.storage.dp_saveNewPhoto(data: data)
-//
-//            self.dp_setStartLoadImage(newImage: newImage)
-//        }
+     
+//    func checkGalleryPermissionStatus() -> PHAuthorizationStatus {
+//       return PHPhotoLibrary.authorizationStatus()
 //    }
-//
-//    func dp_setStartLoadImage(newImage: UIImage) {
-//        self.dp_stopSessino()
-//        self.currentImage = self.photoHelper.dp_scaleAndOrient(image: newImage)
-//        guard let currentImage = self.currentImage else { return }
-//        self.dp_startRecognizedText(image: currentImage, isOriginalLang: true)
-//
-//        DispatchQueue.main.async { [weak self] in
-//            guard let self = self else { return }
-//            self.dp_setPreview()
-//        }
-//    }
+ 
+  // Check for camera device permission.
+  func checkForDevicePermission() {
+    let videoStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
+    if videoStatus == .authorized {
+       // If Permission granted, configure the camera.
+       isPermissionGranted = true
+       configureCamera()
+    } else if videoStatus == .notDetermined {
+       // In case the user has not been asked to grant access we request permission
+       AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: { _ in })
+    } else if videoStatus == .denied {
+       // If Permission denied, show a setting alert.
+       isPermissionGranted = false
+       showSettingAlert = true
+    }
+  }
     
-    func dp_resetLanguage() {
-        currentLang = DP_TranslateManager.shared.currentLanguages ?? TranslateLanguage.english
-        originalLang = nil
+    
+    func switchFlash() {
+       isFlashOn.toggle()
+       cameraManager.toggleTorch(tourchIsOn: isFlashOn)
+    }
+ 
+  // Configure the camera through the CameraManager to show a live camera preview.
+  func configureCamera() {
+     cameraManager.configureCaptureSession()
+  }
+    
+    func setFocus(point: CGPoint) {
+       // Delegate focus configuration to the CameraManager.
+       cameraManager.setFocusOnTap(devicePoint: point)
     }
     
-    func handleCameraPreviews() async {
-           for await image in cameraManager.previewStream {
-               Task { @MainActor in
-                   currentFrame = image
-               }
-           }
-       }
-    
-    func cameraEvents(event: CameraEvent) {
-        switch event {
-        case .createPhoto:
-            createPhoto()
-        case .ligth:
-            ligthOf()
-        case .live:
-            liveCamera()
-        case .refresh:
-            refresh()
-        case .lastPhoto:
-            eventHendler?((.lastPhoto))
-        }
+    func zoom(with factor: CGFloat) {
+        cameraManager.setZoomScale(factor: factor)
     }
     
-    func ligthOf() {
-    ligth = ligth == .off ? .on : .off
-    }
     
-    func liveCamera() {
-        print("camera")
-    }
-    
-    func refresh() {
-        print("refresh")
-    }
-    
-    func createPhoto() {
-        print("photo")
-    }
 }
+    
+//    func cameraEvents(event: CameraEvent) {
+//        switch event {
+//        case .createPhoto:
+//            createPhoto()
+//        case .ligth:
+//            ligthOf()
+//        case .live:
+//            liveCamera()
+//        case .refresh:
+//            refresh()
+//        case .lastPhoto:
+//            eventHendler?((.lastPhoto))
+//        }
+//    }
+//
+//    func ligthOf() {
+//    ligth = ligth == .off ? .on : .off
+//    }
+//
+//    func liveCamera() {
+//        print("camera")
+//    }
+//
+//    func refresh() {
+//        print("refresh")
+//    }
+//
+//    func createPhoto() {
+//        print("photo")
+//    }
+//}
