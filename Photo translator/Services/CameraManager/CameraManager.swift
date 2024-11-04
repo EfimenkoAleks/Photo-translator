@@ -22,7 +22,7 @@ class CameraManager: ObservableObject {
  // Observes changes in the camera's status
  @Published var status = Status.unconfigured
     
-    @Published var capturedImage: UIImage? = nil
+    @Published var capturedImage: Data? = nil
 
     private var cameraDelegate: CameraDelegate?
     var alertError: Alert?

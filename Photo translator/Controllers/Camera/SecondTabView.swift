@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 //struct SecondTabView: View {
 //
@@ -104,7 +105,7 @@ import SwiftUI
 
 struct SecondTabView: View {
  
- @ObservedObject var viewModel = CameraViewModel()
+    @ObservedObject var viewModel: CameraViewModel
     @State private var isFocused = false
     @State private var focusLocation: CGPoint = .zero
     @State private var isScaled = false // To scale the view
@@ -184,9 +185,11 @@ struct SecondTabView: View {
                         }))
                     }
                     .onAppear {
-                        viewModel.setupBindings()
-                        viewModel.checkForDevicePermission()
+                        viewModel.startSession()
                     }
+//                    .onDisappear {
+//                        viewModel.stopSession()
+//                    }
                 }
             }
         }

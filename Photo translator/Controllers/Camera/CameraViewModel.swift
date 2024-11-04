@@ -18,7 +18,8 @@ enum CameraEvent {
 class CameraViewModel: ObservableObject {
  
   // Reference to the CameraManager.
-  @ObservedObject var cameraManager = CameraManager()
+    @ObservedObject var cameraManager: CameraManager
+    var imageStorage: ImageStorage
  
   // Published properties to trigger UI updates.
   @Published var isFlashOn = false
@@ -36,8 +37,10 @@ class CameraViewModel: ObservableObject {
   // Cancellable storage for Combine subscribers.
   private var cancelables = Set<AnyCancellable>()
  
-  init() {
+    init(cameraManager: CameraManager = CameraManager(), imageStorage: ImageStorage = ImageStorage.shared) {
     // Initialize the session with the cameraManager's session.
+        self.cameraManager = cameraManager
+        self.imageStorage = imageStorage
     session = cameraManager.session
   }
 
@@ -55,10 +58,21 @@ class CameraViewModel: ObservableObject {
     }
     .store(in: &cancelables)
       
-      cameraManager.$capturedImage.sink { [weak self] image in
-            self?.capturedImage = image
+      cameraManager.$capturedImage.sink { [weak self] imageData in
+          guard let data = imageData else { return }
+         _ = self?.imageStorage.dp_saveNewPhoto(data: data)
+          DispatchQueue.main.async {
+       
+              guard let image = UIImage(data: data) else { return }
+                        self?.capturedImage = image
+          }
          }.store(in: &cancelables)
   }
+    
+    func startSession() {
+        setupBindings()
+        checkForDevicePermission()
+    }
     
     // Call when the capture button tap
     func captureImage() {

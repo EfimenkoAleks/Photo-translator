@@ -11,9 +11,9 @@ import Photos
 
 class CameraDelegate: NSObject, AVCapturePhotoCaptureDelegate {
  
-   private let completion: (UIImage?) -> Void
+   private let completion: (Data?) -> Void
  
-   init(completion: @escaping (UIImage?) -> Void) {
+   init(completion: @escaping (Data?) -> Void) {
       self.completion = completion
    }
  
@@ -24,9 +24,9 @@ class CameraDelegate: NSObject, AVCapturePhotoCaptureDelegate {
          return
       }
   
-      if let imageData = photo.fileDataRepresentation(), let capturedImage = UIImage(data: imageData) {
+      if let imageData = photo.fileDataRepresentation(){
  //        saveImageToGallery(capturedImage)
-         completion(capturedImage)
+         completion(imageData)
       } else {
          print("CameraManager: Image not fetched.")
       }

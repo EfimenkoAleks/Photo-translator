@@ -29,6 +29,7 @@ final class AplicationCoordinator: Coordinarot {
             guard let self = self else { return }
             switch navigate {
             case .main:
+                // Start main coordinator
                 let mainCoordinator = MainCoordinator(hasSeenOnboarding: self.navigateOnboarding, selectedTab: self.selectedTab)
                 mainCoordinator.start()
                 self.childCoordinator = [mainCoordinator]
@@ -39,6 +40,7 @@ final class AplicationCoordinator: Coordinarot {
                 }
                 
             default:
+                // Start onboarding coordinator
                 let onboardingCoordinator = OnboardingCoordinator(hasSeenOnboarding: self.navigateOnboarding)
                 onboardingCoordinator.start()
                 self.childCoordinator = [onboardingCoordinator]
