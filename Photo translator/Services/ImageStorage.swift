@@ -22,7 +22,7 @@ class ImageStorage: ObservableObject {
     private init(preferens: DP_PreferencesProtocol = DP_Preferences(), storage: DP_FileManager = DP_FileManager.shared) {
         self.preferens = preferens
         self.storage = storage
-        photos = dp_getPhotos() //getMockData()
+   //     dp_getPhotos() //getMockData()
         pinedPhotos = getMockPinedData()
     }
  
@@ -35,7 +35,7 @@ class ImageStorage: ObservableObject {
         DP_FileManager.shared.dp_removeFile(path: url.lastPathComponent)
     }
     
-    func dp_getPhotos() -> [HomeModel] {
+    func dp_getPhotos() {
         let arrInt = dp_getNumber()
         
        let paths = arrInt.compactMap({DP_FileManager.shared.dp_getFileUrlFromPath("\($0)")})
@@ -49,7 +49,7 @@ class ImageStorage: ObservableObject {
         }
         
         models = models.sorted(by: {$0.time > $1.time})
-        return models
+        photos = models
     }
     
     private func dp_getNumber() -> [Int] {
@@ -78,6 +78,12 @@ class ImageStorage: ObservableObject {
             HomeModel(id: UUID(), title: "wish-i-knew2", time: "February 17, 2019", image: URL(string: "https://youtu.be/EgpKu1tAVMY")!),
         ]
         return mok
+    }
+    
+    func convertImage(url: URL) -> UIImage {
+        guard let data = try? Data(contentsOf: url),
+              let image = UIImage(data: data) else  { return UIImage() }
+        return image
     }
     
     func dp_getCountPhotos() -> [Int] {
@@ -142,7 +148,7 @@ class ImageStorage: ObservableObject {
         }
     }
     
-    func sm_getLastPhoto(completion: @escaping (PHAsset?) -> Void) {
+    func sm_getLastPhoto(completion: @escaping (UIImage?) -> Void) {
         var photos: [PHAsset] = []
         dp_fetchAssets { results in
             guard let results = results else { return }
@@ -152,7 +158,9 @@ class ImageStorage: ObservableObject {
                 photos.append(asset)
             }
             photos = photos.sorted(by: {$0.creationDate ?? Date() < $1.creationDate ?? Date()})
-            completion(photos.last)
+    //        completion(photos.last)
+            let asset = photos.last
+            completion(asset?.image)
         }
     }
     

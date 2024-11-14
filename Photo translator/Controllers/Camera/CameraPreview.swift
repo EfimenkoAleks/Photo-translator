@@ -16,7 +16,7 @@ struct CameraPreview: UIViewRepresentable { // for attaching AVCaptureVideoPrevi
   // creates and configures a UIKit-based video preview view
     func makeUIView(context: Context) -> VideoPreviewView {
         let view = VideoPreviewView()
-        view.backgroundColor = .black
+        view.backgroundColor = .clear
         view.videoPreviewLayer.session = session
         view.videoPreviewLayer.videoGravity = .resizeAspect
         view.videoPreviewLayer.connection?.videoOrientation = .portrait

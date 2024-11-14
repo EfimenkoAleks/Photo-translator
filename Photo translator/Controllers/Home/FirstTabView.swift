@@ -13,32 +13,26 @@ struct FirstTabView: View {
     @ObservedObject var viewModel: HomeViewModel
     var doneRequested: (FirstTabEvent) -> Void
     var transitions: [DP_HomeMenuEvent] = [.language, .gallery, .translate]
-   
+    
     var body: some View {
         ZStack {
             LinearGradient(colors: [Color(uiColor: DP_Colors.gradientTop.color), Color(uiColor: DP_Colors.gradientBottom.color)], startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
             
             List {
-                
                 ForEach(pinned(pined: pickerSelection), id:\.self) { photo in
-                    ListPhotoCell(image: viewModel.convertImage(data: viewModel.photos[0].image), photo: photo)
+                    ListPhotoCell(image: viewModel.convertImage(url: photo.image), photo: photo)
                     
                         .listRowSeparator(.hidden)
-//                        .onTapGesture {
-//                            print("")
-//                        }
+                    //                        .onTapGesture {
+                    //                            print("")
+                    //                        }
                 }
                 .onDelete(perform: self.deleteItems)
-                .listRowBackground(Color.clear)
-                
+                .padding(EdgeInsets.init(top: 0, leading: -20, bottom: 0, trailing: -20))
             }
-            .listRowSeparatorTint(.clear)
-   //         .scrollContentBackground(.hidden)
-            .background(Color.clear)
-            .padding(.top, -10)
-            .padding(.bottom, -10)
-            .padding(.horizontal, -25)
+            .padding(EdgeInsets.init(top: 10, leading: 20, bottom: 10, trailing: 20))
+            
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Menu {
@@ -56,7 +50,9 @@ struct FirstTabView: View {
                         }
                     } label: {
                         Label("", image: "settings")
+                        //  .foregroundColor(.white)
                     }
+                    .foregroundColor(.white)
                     
                 }
                 
@@ -64,22 +60,36 @@ struct FirstTabView: View {
                     
                     Picker(selection: $pickerSelection, label: Text("")) {
                         Text(DP_HomeModelPickerEvent.recent.title).tag(0).foregroundColor(Color.white)
-                                Text(DP_HomeModelPickerEvent.pinned.title).tag(1)
-                            }
+                        Text(DP_HomeModelPickerEvent.pinned.title).tag(1)
+                    }
                     .frame(width: 150)
                     .pickerStyle(SegmentedPickerStyle())
                     .padding(.leading, (viewModel.whitScreen() / 2.0) - 90)
                     
-                            .onAppear {
-                                UISegmentedControl.appearance().selectedSegmentTintColor = .blue
-                                    UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
-                                    UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.black], for: .normal)
-                                UISegmentedControl.appearance().backgroundColor = .white
-                                UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.accentColor)
-                            }
+                    .onAppear {
+                        UISegmentedControl.appearance().selectedSegmentTintColor = .blue
+                        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
+                        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.black], for: .normal)
+                        UISegmentedControl.appearance().backgroundColor = .white
+                        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.accentColor)
+                    }
                 }
                 
             }
+        }
+        .onAppear {
+            UITableView.appearance().backgroundColor = .purple
+            viewModel.fetchPhotos()
+        }
+        
+        
+    }
+    
+    func createPhoto(url: URL) -> Data {
+        do {
+            return try Data(contentsOf: url)
+        } catch {
+            return Data()
         }
     }
     
@@ -90,12 +100,12 @@ struct FirstTabView: View {
     }
     
     func deleteItems(at offsets: IndexSet) {
-          //  contacts.remove(atOffsets: offsets)
-        }
-}
-
-struct FirstTabView_Previews: PreviewProvider {
-    static var previews: some View {
-        FirstTabView(viewModel: HomeViewModel(), doneRequested: {_ in })
+        //  contacts.remove(atOffsets: offsets)
     }
 }
+
+//struct FirstTabView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FirstTabView(viewModel: HomeViewModel(), doneRequested: {_ in })
+//    }
+//}

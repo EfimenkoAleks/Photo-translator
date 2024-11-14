@@ -16,58 +16,76 @@ enum CameraEvent {
 }
 
 class CameraViewModel: ObservableObject {
- 
-  // Reference to the CameraManager.
+    
+    // Reference to the CameraManager.
     @ObservedObject var cameraManager: CameraManager
     var imageStorage: ImageStorage
- 
-  // Published properties to trigger UI updates.
-  @Published var isFlashOn = false
+    
+    // Published properties to trigger UI updates.
+    @Published var isFlashOn = false
     @Published var capturedImage: UIImage?
-  @Published var showAlertError = false
-  @Published var showSettingAlert = false
-  @Published var isPermissionGranted: Bool = false
+    @Published var showAlertError = false
+    @Published var showSettingAlert = false
+    @Published var isPermissionGranted: Bool = false
     @Published private var flashMode: AVCaptureDevice.FlashMode = .off
- 
-  var alertError: Alert!
-
-  // Reference to the AVCaptureSession.
-  var session: AVCaptureSession = .init()
-
-  // Cancellable storage for Combine subscribers.
-  private var cancelables = Set<AnyCancellable>()
- 
+    private var presentData: Data?
+    var alertError: Alert!
+    
+    // Reference to the AVCaptureSession.
+    var session: AVCaptureSession = .init()
+    
+    // Cancellable storage for Combine subscribers.
+    private var cancelables = Set<AnyCancellable>()
+    
     init(cameraManager: CameraManager = CameraManager(), imageStorage: ImageStorage = ImageStorage.shared) {
-    // Initialize the session with the cameraManager's session.
+        // Initialize the session with the cameraManager's session.
         self.cameraManager = cameraManager
         self.imageStorage = imageStorage
-    session = cameraManager.session
-  }
-
-  deinit {
-    // Deinitializer to stop capturing when the ViewModel is deallocated.
-    cameraManager.stopCapturing()
-  }
- 
-  // Setup Combine bindings for handling publisher's emit values
-  func setupBindings() {
-      cameraManager.$shouldShowAlertView.sink { [weak self] value in
-      // Update alertError and showAlertError based on cameraManager's state.
-      self?.alertError = self?.cameraManager.alertError
-      self?.showAlertError = value
+        session = cameraManager.session
+        getLastPhoto()
     }
-    .store(in: &cancelables)
-      
-      cameraManager.$capturedImage.sink { [weak self] imageData in
-          guard let data = imageData else { return }
-         _ = self?.imageStorage.dp_saveNewPhoto(data: data)
-          DispatchQueue.main.async {
-       
-              guard let image = UIImage(data: data) else { return }
-                        self?.capturedImage = image
-          }
-         }.store(in: &cancelables)
-  }
+    
+    deinit {
+        // Deinitializer to stop capturing when the ViewModel is deallocated.
+        cameraManager.stopCapturing()
+    }
+    
+    func getLastPhoto() {
+        imageStorage.dp_getPhotos()
+        guard let lastModel = imageStorage.photos.first else { return }
+        let lastPhoto = convertImage(url: lastModel.image)
+        DispatchQueue.main.async { [weak self] in
+            self?.capturedImage = lastPhoto
+        }
+    }
+    
+    func convertImage(url: URL) -> UIImage {
+        imageStorage.convertImage(url: url)
+    }
+    
+    // Setup Combine bindings for handling publisher's emit values
+    func setupBindings() {
+        cameraManager.$shouldShowAlertView.sink { [weak self] value in
+            // Update alertError and showAlertError based on cameraManager's state.
+            self?.alertError = self?.cameraManager.alertError
+            self?.showAlertError = value
+        }
+        .store(in: &cancelables)
+        
+        cameraManager.$capturedImage.sink { [weak self] imageData in
+            
+            guard let self = self,
+                  let data = imageData,
+                  self.presentData != data else { return }
+            
+            self.presentData = data
+            _ = self.imageStorage.dp_saveNewPhoto(data: data)
+            DispatchQueue.main.async {
+                guard let image = UIImage(data: data) else { return }
+                self.capturedImage = image
+            }
+        }.store(in: &cancelables)
+    }
     
     func startSession() {
         setupBindings()
@@ -76,62 +94,62 @@ class CameraViewModel: ObservableObject {
     
     // Call when the capture button tap
     func captureImage() {
-//       requestGalleryPermission()
-   //    let permission = checkGalleryPermissionStatus()
-   //    if permission.rawValue != 2 {
-         cameraManager.captureImage()
-  //     }
+        //       requestGalleryPermission()
+        //    let permission = checkGalleryPermissionStatus()
+        //    if permission.rawValue != 2 {
+        cameraManager.captureImage()
+        //     }
     }
-
+    
     // Ask for the permission for photo library access
-//    func requestGalleryPermission() {
-//       PHPhotoLibrary.requestAuthorization { status in
-//         switch status {
-//         case .authorized:
-//            break
-//         case .denied:
-//            self.showSettingAlert = true
-//         default:
-//            break
-//         }
-//       }
-//    }
-     
-//    func checkGalleryPermissionStatus() -> PHAuthorizationStatus {
-//       return PHPhotoLibrary.authorizationStatus()
-//    }
- 
-  // Check for camera device permission.
-  func checkForDevicePermission() {
-    let videoStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
-    if videoStatus == .authorized {
-       // If Permission granted, configure the camera.
-       isPermissionGranted = true
-       configureCamera()
-    } else if videoStatus == .notDetermined {
-       // In case the user has not been asked to grant access we request permission
-       AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: { _ in })
-    } else if videoStatus == .denied {
-       // If Permission denied, show a setting alert.
-       isPermissionGranted = false
-       showSettingAlert = true
+    //    func requestGalleryPermission() {
+    //       PHPhotoLibrary.requestAuthorization { status in
+    //         switch status {
+    //         case .authorized:
+    //            break
+    //         case .denied:
+    //            self.showSettingAlert = true
+    //         default:
+    //            break
+    //         }
+    //       }
+    //    }
+    
+    //    func checkGalleryPermissionStatus() -> PHAuthorizationStatus {
+    //       return PHPhotoLibrary.authorizationStatus()
+    //    }
+    
+    // Check for camera device permission.
+    func checkForDevicePermission() {
+        let videoStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
+        if videoStatus == .authorized {
+            // If Permission granted, configure the camera.
+            isPermissionGranted = true
+            configureCamera()
+        } else if videoStatus == .notDetermined {
+            // In case the user has not been asked to grant access we request permission
+            AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: { _ in })
+        } else if videoStatus == .denied {
+            // If Permission denied, show a setting alert.
+            isPermissionGranted = false
+            showSettingAlert = true
+        }
     }
-  }
     
     
     func switchFlash() {
-       isFlashOn.toggle()
-       cameraManager.toggleTorch(tourchIsOn: isFlashOn)
+        isFlashOn.toggle()
+        cameraManager.toggleTorch(tourchIsOn: isFlashOn)
     }
- 
-  // Configure the camera through the CameraManager to show a live camera preview.
-  func configureCamera() {
-     cameraManager.configureCaptureSession()
-  }
+    
+    // Configure the camera through the CameraManager to show a live camera preview.
+    func configureCamera() {
+        cameraManager.configureCaptureSession()
+    }
     
     func setFocus(point: CGPoint) {
-       // Delegate focus configuration to the CameraManager.
-       cameraManager.setFocusOnTap(devicePoint: point)
+        // Delegate focus configuration to the CameraManager.
+        cameraManager.setFocusOnTap(devicePoint: point)
     }
     
     func zoom(with factor: CGFloat) {
@@ -140,7 +158,7 @@ class CameraViewModel: ObservableObject {
     
     
 }
-    
+
 //    func cameraEvents(event: CameraEvent) {
 //        switch event {
 //        case .createPhoto:

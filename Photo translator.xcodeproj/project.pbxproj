@@ -70,6 +70,7 @@
 		CE6DCEE92CB7DD05006B63DA /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DCEE82CB7DD05006B63DA /* CameraManager.swift */; };
 		CE6DCEEB2CB7E0E7006B63DA /* CMSampleBuffer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DCEEA2CB7E0E7006B63DA /* CMSampleBuffer+Extension.swift */; };
 		CE6DCEED2CB7E149006B63DA /* CIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6DCEEC2CB7E149006B63DA /* CIImage+Extension.swift */; };
+		CE8EFF672CDA6E1900BEAFEC /* HPAsset+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8EFF662CDA6E1900BEAFEC /* HPAsset+Extension.swift */; };
 		CECD8D032CABEDC0003ADDD1 /* PhotoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD8D022CABEDC0003ADDD1 /* PhotoButton.swift */; };
 		CECD8D052CABEDE8003ADDD1 /* CameraControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD8D042CABEDE8003ADDD1 /* CameraControlView.swift */; };
 /* End PBXBuildFile section */
@@ -142,6 +143,7 @@
 		CE6DCEE82CB7DD05006B63DA /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		CE6DCEEA2CB7E0E7006B63DA /* CMSampleBuffer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CMSampleBuffer+Extension.swift"; sourceTree = "<group>"; };
 		CE6DCEEC2CB7E149006B63DA /* CIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CIImage+Extension.swift"; sourceTree = "<group>"; };
+		CE8EFF662CDA6E1900BEAFEC /* HPAsset+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HPAsset+Extension.swift"; sourceTree = "<group>"; };
 		CECD8D022CABEDC0003ADDD1 /* PhotoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoButton.swift; sourceTree = "<group>"; };
 		CECD8D042CABEDE8003ADDD1 /* CameraControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraControlView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -455,6 +457,7 @@
 				CE3B72AF2C9D733200798798 /* UIView+Extension.swift */,
 				CE6DCEEA2CB7E0E7006B63DA /* CMSampleBuffer+Extension.swift */,
 				CE6DCEEC2CB7E149006B63DA /* CIImage+Extension.swift */,
+				CE8EFF662CDA6E1900BEAFEC /* HPAsset+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -668,6 +671,7 @@
 				CE0EE20D2C9337EF003C4E19 /* SecondTabView.swift in Sources */,
 				CE0EE1DE2C91D0A8003C4E19 /* SceneDelegate.swift in Sources */,
 				CE1750202CA2BD22003FF3AC /* DP_CustomTabBar.swift in Sources */,
+				CE8EFF672CDA6E1900BEAFEC /* HPAsset+Extension.swift in Sources */,
 				CE5ED6362C9C329C0077DB35 /* DP_VideoCaptureManager.swift in Sources */,
 				CE0EE2012C931C27003C4E19 /* SecondTabCoordinator.swift in Sources */,
 				CE3B72AE2C9D72EC00798798 /* UIImage+Extension.swift in Sources */,

@@ -18,7 +18,7 @@ struct ListPhotoCell: View {
                 .fill(Color.white)
             
             HStack {
-                Image("girl")
+                Image(uiImage: image)
                     .resizable()
                     .scaledToFit()
                     .frame(height: 70)
@@ -33,7 +33,7 @@ struct ListPhotoCell: View {
                     
                     Text(photo.time)
                         .font(.subheadline)
-                        .foregroundColor(.secondary)
+                        .foregroundColor(Color.gray)
                 }
                 
                 Spacer()
@@ -43,6 +43,5 @@ struct ListPhotoCell: View {
             .padding(.leading,30)
             .padding(.trailing, 20)
         }
-        
     }
 }
