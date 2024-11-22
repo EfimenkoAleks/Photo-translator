@@ -18,6 +18,7 @@ class ImageStorage: ObservableObject {
     private let storage: DP_FileManager
     private var preferens: DP_PreferencesProtocol
     private var screenNumber = 0
+    private let convertQueue = DispatchQueue(label: "convertQueue", qos: .background, attributes: .concurrent)
     
     private init(preferens: DP_PreferencesProtocol = DP_Preferences(), storage: DP_FileManager = DP_FileManager.shared) {
         self.preferens = preferens
@@ -80,10 +81,15 @@ class ImageStorage: ObservableObject {
         return mok
     }
     
-    func convertImage(url: URL) -> UIImage {
-        guard let data = try? Data(contentsOf: url),
-              let image = UIImage(data: data) else  { return UIImage() }
-        return image
+    func convertImage(url: URL, completion: @escaping (UIImage?) -> Void) {
+        convertQueue.async {
+            guard let data = try? Data(contentsOf: url),
+                  let image = UIImage(data: data) else  {
+                completion(UIImage())
+                return
+            }
+            completion(image)
+        }
     }
     
     func dp_getCountPhotos() -> [Int] {

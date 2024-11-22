@@ -11,7 +11,6 @@ import UIKit
 import Vision
 import MLKitTranslate
 
-
 final class HomeViewModel: ObservableObject {
     
     @Published var photos: [HomeModel]
@@ -50,8 +49,10 @@ final class HomeViewModel: ObservableObject {
         .store(in: &cancellables)
     }
     
-    func convertImage(url: URL) -> UIImage {
-        imageStorage.convertImage(url: url)
+    func removePhoto(index: Int, pined: Int) {
+        let arr = pined == 0 ? photos : pinedPhotos
+        let url = arr[index].image
+        imageStorage.dp_deletePhoto(url: url)
     }
     
     func whitScreen() -> CGFloat {

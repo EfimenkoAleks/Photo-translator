@@ -9,8 +9,18 @@ import SwiftUI
 
 struct ListPhotoCell: View {
     
-    var image: UIImage
+    @ObservedObject var viewModel: ListPhotocellViewModel
+    var url: URL
     var photo: HomeModel
+    
+    init(viewModel: ListPhotocellViewModel = ListPhotocellViewModel(), url: URL, photo: HomeModel) {
+        self.url = url
+        self.photo = photo
+        self.viewModel = viewModel
+        
+        self.viewModel.convertImage(url: url)
+    }
+    
     var body: some View {
         
         ZStack {
@@ -18,7 +28,7 @@ struct ListPhotoCell: View {
                 .fill(Color.white)
             
             HStack {
-                Image(uiImage: image)
+                Image(uiImage: viewModel.capturedImage)
                     .resizable()
                     .scaledToFit()
                     .frame(height: 70)

@@ -53,14 +53,17 @@ class CameraViewModel: ObservableObject {
     func getLastPhoto() {
         imageStorage.dp_getPhotos()
         guard let lastModel = imageStorage.photos.first else { return }
-        let lastPhoto = convertImage(url: lastModel.image)
-        DispatchQueue.main.async { [weak self] in
-            self?.capturedImage = lastPhoto
+        convertImage(url: lastModel.image) { image in
+            DispatchQueue.main.async { [weak self] in
+                self?.capturedImage = image
+            }
         }
     }
     
-    func convertImage(url: URL) -> UIImage {
-        imageStorage.convertImage(url: url)
+    func convertImage(url: URL, completion: @escaping (UIImage?) -> Void) {
+        imageStorage.convertImage(url: url) { image in
+            completion(image)
+        }
     }
     
     // Setup Combine bindings for handling publisher's emit values

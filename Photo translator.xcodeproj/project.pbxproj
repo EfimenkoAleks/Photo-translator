@@ -73,6 +73,7 @@
 		CE8EFF672CDA6E1900BEAFEC /* HPAsset+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8EFF662CDA6E1900BEAFEC /* HPAsset+Extension.swift */; };
 		CECD8D032CABEDC0003ADDD1 /* PhotoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD8D022CABEDC0003ADDD1 /* PhotoButton.swift */; };
 		CECD8D052CABEDE8003ADDD1 /* CameraControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD8D042CABEDE8003ADDD1 /* CameraControlView.swift */; };
+		CEF472822CEF93B900C3BA6D /* ListPhotocellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF472812CEF93B900C3BA6D /* ListPhotocellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -146,6 +147,7 @@
 		CE8EFF662CDA6E1900BEAFEC /* HPAsset+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HPAsset+Extension.swift"; sourceTree = "<group>"; };
 		CECD8D022CABEDC0003ADDD1 /* PhotoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoButton.swift; sourceTree = "<group>"; };
 		CECD8D042CABEDE8003ADDD1 /* CameraControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraControlView.swift; sourceTree = "<group>"; };
+		CEF472812CEF93B900C3BA6D /* ListPhotocellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPhotocellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,6 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				CE1750182CA165EC003FF3AC /* ListPhotoCell.swift */,
+				CEF472812CEF93B900C3BA6D /* ListPhotocellViewModel.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -641,6 +644,7 @@
 				CE0EE2082C93207B003C4E19 /* HomeView.swift in Sources */,
 				CE37C8A62C99BF6C001065DA /* HomeViewModel.swift in Sources */,
 				CE6DCEE92CB7DD05006B63DA /* CameraManager.swift in Sources */,
+				CEF472822CEF93B900C3BA6D /* ListPhotocellViewModel.swift in Sources */,
 				CE0EE1F12C91D1FE003C4E19 /* AplicationCoordinator.swift in Sources */,
 				CE0EE2112C9339FA003C4E19 /* HomeDetailCoordinator.swift in Sources */,
 				CE5ED62E2C9C311C0077DB35 /* DP_TextRecognizedManager.swift in Sources */,

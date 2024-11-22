@@ -21,16 +21,23 @@ struct FirstTabView: View {
             
             List {
                 ForEach(pinned(pined: pickerSelection), id:\.self) { photo in
-                    ListPhotoCell(image: viewModel.convertImage(url: photo.image), photo: photo)
+                    ListPhotoCell(url: photo.image, photo: photo)
                     
                         .listRowSeparator(.hidden)
-                    //                        .onTapGesture {
-                    //                            print("")
-                    //                        }
+                        .listRowBackground(Color.clear)
+                        .background(Color.clear)
+                    
+                                            .onTapGesture {
+                                                print("Tap \(photo.image.lastPathComponent)")
+                                            }
+                    
                 }
-                .onDelete(perform: self.deleteItems)
+                .onDelete(perform: delete)
                 .padding(EdgeInsets.init(top: 0, leading: -20, bottom: 0, trailing: -20))
             }
+            
+            .listStyle(.plain) //Change ListStyle
+            .background(Color.clear) //Change Background Color
             .padding(EdgeInsets.init(top: 10, leading: 20, bottom: 10, trailing: 20))
             
             .toolbar {
@@ -81,9 +88,13 @@ struct FirstTabView: View {
             UITableView.appearance().backgroundColor = .purple
             viewModel.fetchPhotos()
         }
-        
-        
     }
+    
+    func delete(at offsets: IndexSet) {
+        guard let index = offsets.first else { return }
+        
+        viewModel.removePhoto(index: index, pined: pickerSelection)
+        }
     
     func createPhoto(url: URL) -> Data {
         do {
@@ -97,10 +108,6 @@ struct FirstTabView: View {
         var source: [HomeModel] = []
         source = pickerSelection == 0 ? viewModel.photos : viewModel.pinedPhotos
         return source
-    }
-    
-    func deleteItems(at offsets: IndexSet) {
-        //  contacts.remove(atOffsets: offsets)
     }
 }
 
