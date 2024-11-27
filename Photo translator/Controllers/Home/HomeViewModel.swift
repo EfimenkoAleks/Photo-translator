@@ -11,17 +11,20 @@ import UIKit
 import Vision
 import MLKitTranslate
 
-final class HomeViewModel: ObservableObject {
+final class HomeViewModel: FirstTabModuleViewModel, ObservableObject {
     
     @Published var photos: [HomeModel]
     @Published var pinedPhotos: [HomeModel]
   //  @Published var name: String?
     private var imageStorage: ImageStorage
     private var cancellables = Set<AnyCancellable>()
+//    var doneRequested: ((FirstTabEvent) -> Void)?
+     private var coordinator: FirstTabCoordinator
  //   private var photoManager: DP_PhotoManager
     
-    init(storage: ImageStorage = ImageStorage.shared) {
+    init(coordinator: FirstTabCoordinator, storage: ImageStorage = ImageStorage.shared) {
         
+        self.coordinator = coordinator
         self.imageStorage = storage
             
         photos = imageStorage.photos
@@ -30,6 +33,10 @@ final class HomeViewModel: ObservableObject {
         bindImage()
         fetchPinedPhotos()
         }
+    
+    func transsitionTo(_ transition: FirstTabEvent)  {
+        coordinator.eventOccurred(with: transition)
+    }
     
     func bindImage() {
         imageStorage.$photos.sink { [weak self] in

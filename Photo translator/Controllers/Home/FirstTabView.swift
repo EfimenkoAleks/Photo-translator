@@ -11,7 +11,6 @@ struct FirstTabView: View {
     
     @State var pickerSelection = 0
     @ObservedObject var viewModel: HomeViewModel
-    var doneRequested: (FirstTabEvent) -> Void
     var transitions: [DP_HomeMenuEvent] = [.language, .gallery, .translate]
     
     var body: some View {
@@ -47,11 +46,11 @@ struct FirstTabView: View {
                             Button(transition.title, action: {
                                 switch transition {
                                 case .language:
-                                    doneRequested(.language)
+                                    viewModel.transsitionTo(.language)
                                 case .gallery:
-                                    doneRequested(.gallery)
+                                    viewModel.transsitionTo(.gallery)
                                 case .translate:
-                                    doneRequested(.policy)
+                                    viewModel.transsitionTo(.policy)
                                 }
                             })
                         }

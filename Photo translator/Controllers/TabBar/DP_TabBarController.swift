@@ -11,7 +11,7 @@ import SwiftUI
 
 typealias DP_TabBarControllerExtension = DP_TabBarController
 
-class DP_TabBarController: UIViewController {
+final class DP_TabBarController: UIViewController {
     
     var selectedTab: DP_TabBarSelectedItem
     var hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>
@@ -110,11 +110,10 @@ private extension DP_TabBarControllerExtension {
         
         switch itemForVC {
         case .photo:
-            let firstCoordinator = FirstTabCoordinator(hasSeenOnboarding: hasSeenOnboarding)
             let navController = UINavigationController()
+            let firstModule = HomeAssembly().createModule(hasSeenOnboarding: hasSeenOnboarding, navController: navController)
             navController.tabBarItem = itemForVC.item
-            firstCoordinator.rootViewController = navController
-            firstCoordinator.start()
+            navController.setViewControllers([firstModule.view], animated: false)
             return navController
         case .camera:
             let secondCoordinator = SecondTabCoordinator(hasSeenOnboarding: hasSeenOnboarding)

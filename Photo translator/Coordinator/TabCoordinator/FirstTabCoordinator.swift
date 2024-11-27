@@ -12,22 +12,13 @@ enum FirstTabEvent {
     case language, gallery, policy, home, removeChild
 }
 
-final class FirstTabCoordinator: Coordinarot {
+final class FirstTabCoordinator: FirstTabModuleCoordinator {
     
-    var rootViewController: UINavigationController?
+    weak var transitionController: UIViewController?
     private var hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>
     
     init(hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>) {
         self.hasSeenOnboarding = hasSeenOnboarding
-    }
-    
-    func start() {
-        let vModel = HomeViewModel()
-        let first = FirstTabView(viewModel: vModel) { [weak self] transition in
-            self?.eventOccurred(with: transition)
-        }
-        let vc = UIHostingController(rootView: first)
-        rootViewController?.setViewControllers([vc], animated: false)
     }
 }
 
@@ -50,9 +41,11 @@ extension FirstTabCoordinator {
             
         case .gallery:
             print("gallery")
+   //         transitionController?.navigationController?.pushViewController(vc, animated: true)
             break
         case .policy:
             print("policy")
+   //         transitionController?.navigationController?.pushViewController(vc, animated: true)
             break
             
         case .home:
@@ -65,3 +58,5 @@ extension FirstTabCoordinator {
         }
     }
 }
+
+//  UIApplication.getTopViewController()?.present(module.view, animated: true, completion: nil)
