@@ -111,22 +111,23 @@ private extension DP_TabBarControllerExtension {
         switch itemForVC {
         case .photo:
             let navController = UINavigationController()
-            let firstModule = HomeAssembly().createModule(hasSeenOnboarding: hasSeenOnboarding, navController: navController)
+            let firstCoordinator = FirstTabCoordinator(hasSeenOnboarding: hasSeenOnboarding)
             navController.tabBarItem = itemForVC.item
-            navController.setViewControllers([firstModule.view], animated: false)
+            firstCoordinator.transitionController = navController
+            firstCoordinator.start()
             return navController
         case .camera:
             let secondCoordinator = SecondTabCoordinator(hasSeenOnboarding: hasSeenOnboarding)
             let navController = UINavigationController()
             navController.tabBarItem = itemForVC.item
-            secondCoordinator.rootViewController = navController
+            secondCoordinator.transitionController = navController
             secondCoordinator.start()
             return navController
         case .text:
             let thirdCoordinator = ThirdTabCoordinator(hasSeenOnboarding: hasSeenOnboarding)
             let navController = UINavigationController()
             navController.tabBarItem = itemForVC.item
-            thirdCoordinator.rootViewController = navController
+            thirdCoordinator.transitionController = navController
             thirdCoordinator.start()
             return navController
         }

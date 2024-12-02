@@ -14,7 +14,7 @@ enum SecondTabEvent {
 
 final class SecondTabCoordinator: Coordinarot {
     
-    var rootViewController: UINavigationController?
+    weak var transitionController: UINavigationController?
     private var hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>
     
     init(hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>) {
@@ -22,17 +22,14 @@ final class SecondTabCoordinator: Coordinarot {
     }
  
     func start() {
-        let vModel = CameraViewModel()
-//        vModel.eventHendler = { [weak self] event in
-//            self?.eventOccurred(with: event)
-//        }
+        let vModel = CameraViewModel(coordinator: self)
         let first = SecondTabView(viewModel: vModel) 
         let vc = UIHostingController(rootView: first)
-        rootViewController?.setViewControllers([vc], animated: false)
+        transitionController?.setViewControllers([vc], animated: false)
     }
 }
 
-extension SecondTabCoordinator {
+extension SecondTabCoordinator: CameraModuleCoordinator {
     
     func eventOccurred(with type: SecondTabEvent) {
         switch type {

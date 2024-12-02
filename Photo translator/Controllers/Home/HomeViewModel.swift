@@ -19,10 +19,10 @@ final class HomeViewModel: FirstTabModuleViewModel, ObservableObject {
     private var imageStorage: ImageStorage
     private var cancellables = Set<AnyCancellable>()
 //    var doneRequested: ((FirstTabEvent) -> Void)?
-     private var coordinator: FirstTabCoordinator
+    private var coordinator: FirstTabCoordinatorInterface
  //   private var photoManager: DP_PhotoManager
     
-    init(coordinator: FirstTabCoordinator, storage: ImageStorage = ImageStorage.shared) {
+    init(coordinator: FirstTabCoordinatorInterface, storage: ImageStorage = ImageStorage.shared) {
         
         self.coordinator = coordinator
         self.imageStorage = storage

@@ -73,8 +73,10 @@
 		CE8EFF672CDA6E1900BEAFEC /* HPAsset+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8EFF662CDA6E1900BEAFEC /* HPAsset+Extension.swift */; };
 		CECD8D032CABEDC0003ADDD1 /* PhotoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD8D022CABEDC0003ADDD1 /* PhotoButton.swift */; };
 		CECD8D052CABEDE8003ADDD1 /* CameraControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECD8D042CABEDE8003ADDD1 /* CameraControlView.swift */; };
-		CECED7A72CF5FA4F006374E9 /* HomeAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECED7A62CF5FA4F006374E9 /* HomeAssembly.swift */; };
 		CECED7A92CF63B29006374E9 /* HomeInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECED7A82CF63B29006374E9 /* HomeInterfaces.swift */; };
+		CECED7AB2CF8B0E3006374E9 /* CameraInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECED7AA2CF8B0E3006374E9 /* CameraInterfaces.swift */; };
+		CECED7AD2CF8B3F5006374E9 /* TranslateInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECED7AC2CF8B3F5006374E9 /* TranslateInterfaces.swift */; };
+		CECED7AF2CFDB3F1006374E9 /* HomeAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECED7AE2CFDB3F1006374E9 /* HomeAssembly.swift */; };
 		CEF472822CEF93B900C3BA6D /* ListPhotocellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF472812CEF93B900C3BA6D /* ListPhotocellViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -149,8 +151,10 @@
 		CE8EFF662CDA6E1900BEAFEC /* HPAsset+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HPAsset+Extension.swift"; sourceTree = "<group>"; };
 		CECD8D022CABEDC0003ADDD1 /* PhotoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoButton.swift; sourceTree = "<group>"; };
 		CECD8D042CABEDE8003ADDD1 /* CameraControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraControlView.swift; sourceTree = "<group>"; };
-		CECED7A62CF5FA4F006374E9 /* HomeAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembly.swift; sourceTree = "<group>"; };
 		CECED7A82CF63B29006374E9 /* HomeInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeInterfaces.swift; sourceTree = "<group>"; };
+		CECED7AA2CF8B0E3006374E9 /* CameraInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraInterfaces.swift; sourceTree = "<group>"; };
+		CECED7AC2CF8B3F5006374E9 /* TranslateInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateInterfaces.swift; sourceTree = "<group>"; };
+		CECED7AE2CFDB3F1006374E9 /* HomeAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembly.swift; sourceTree = "<group>"; };
 		CEF472812CEF93B900C3BA6D /* ListPhotocellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPhotocellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -343,8 +347,8 @@
 				CE0EE20A2C9337BD003C4E19 /* FirstTabView.swift */,
 				CE37C8A52C99BF6C001065DA /* HomeViewModel.swift */,
 				CE37C8AD2C99C362001065DA /* HomeModel.swift */,
-				CECED7A62CF5FA4F006374E9 /* HomeAssembly.swift */,
 				CECED7A82CF63B29006374E9 /* HomeInterfaces.swift */,
+				CECED7AE2CFDB3F1006374E9 /* HomeAssembly.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -357,6 +361,7 @@
 				CE37C8A82C99BFFC001065DA /* CameraViewModel.swift */,
 				CE6BA1EB2CC910EB00F5CE89 /* CameraPreview.swift */,
 				CE6BA1ED2CD2323400F5CE89 /* CameraDelegate.swift */,
+				CECED7AA2CF8B0E3006374E9 /* CameraInterfaces.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -367,6 +372,7 @@
 				CE1750252CA6EED7003FF3AC /* SubView */,
 				CE0EE20E2C933827003C4E19 /* ThirdTabView.swift */,
 				CE37C8AB2C99C0FA001065DA /* TranslateViewModel.swift */,
+				CECED7AC2CF8B3F5006374E9 /* TranslateInterfaces.swift */,
 			);
 			path = Translate;
 			sourceTree = "<group>";
@@ -647,6 +653,7 @@
 				CE0EE1F32C91D23F003C4E19 /* Coordinator.swift in Sources */,
 				CE6DCEEB2CB7E0E7006B63DA /* CMSampleBuffer+Extension.swift in Sources */,
 				CE0EE1FA2C91D315003C4E19 /* NavigationRouter.swift in Sources */,
+				CECED7AF2CFDB3F1006374E9 /* HomeAssembly.swift in Sources */,
 				CE0EE2082C93207B003C4E19 /* HomeView.swift in Sources */,
 				CE37C8A62C99BF6C001065DA /* HomeViewModel.swift in Sources */,
 				CE6DCEE92CB7DD05006B63DA /* CameraManager.swift in Sources */,
@@ -654,6 +661,7 @@
 				CE0EE1F12C91D1FE003C4E19 /* AplicationCoordinator.swift in Sources */,
 				CE0EE2112C9339FA003C4E19 /* HomeDetailCoordinator.swift in Sources */,
 				CE5ED62E2C9C311C0077DB35 /* DP_TextRecognizedManager.swift in Sources */,
+				CECED7AD2CF8B3F5006374E9 /* TranslateInterfaces.swift in Sources */,
 				CE5ED6462C9CAC330077DB35 /* DP_Colors.swift in Sources */,
 				CECD8D032CABEDC0003ADDD1 /* PhotoButton.swift in Sources */,
 				CE0EE1F72C91D2C6003C4E19 /* NavCoordinator.swift in Sources */,
@@ -665,10 +673,10 @@
 				CE5ED6222C9C26C60077DB35 /* FileManager.swift in Sources */,
 				CE1750222CA2BD5A003FF3AC /* DP_TabBarController.swift in Sources */,
 				CE1750192CA165EC003FF3AC /* ListPhotoCell.swift in Sources */,
+				CECED7AB2CF8B0E3006374E9 /* CameraInterfaces.swift in Sources */,
 				CE0EE1DC2C91D0A8003C4E19 /* AppDelegate.swift in Sources */,
 				CE37C8A92C99BFFC001065DA /* CameraViewModel.swift in Sources */,
 				CE0EE1F52C91D27F003C4E19 /* MainCoordinator.swift in Sources */,
-				CECED7A72CF5FA4F006374E9 /* HomeAssembly.swift in Sources */,
 				CECD8D052CABEDE8003ADDD1 /* CameraControlView.swift in Sources */,
 				CE5ED6382C9C32BD0077DB35 /* H264Encoder.swift in Sources */,
 				CECED7A92CF63B29006374E9 /* HomeInterfaces.swift in Sources */,

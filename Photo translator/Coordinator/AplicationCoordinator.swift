@@ -13,6 +13,7 @@ enum NavDetailCoordinator {
 }
 
 final class AplicationCoordinator: Coordinarot {
+    var transitionController: UINavigationController?
     
     var window: UIWindow
     var childCoordinator: [Coordinarot] = []
@@ -44,7 +45,7 @@ final class AplicationCoordinator: Coordinarot {
                 let onboardingCoordinator = OnboardingCoordinator(hasSeenOnboarding: self.navigateOnboarding)
                 onboardingCoordinator.start()
                 self.childCoordinator = [onboardingCoordinator]
-                self.window.rootViewController = onboardingCoordinator.rootViewController
+                self.window.rootViewController = onboardingCoordinator.transitionController
             }
         }
         .store(in: &subscriptions)

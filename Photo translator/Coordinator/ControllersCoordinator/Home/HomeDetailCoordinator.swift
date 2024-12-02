@@ -22,7 +22,7 @@ protocol HomeDetailCoordinatorProtocol: Coordinarot {
 
 class HomeDetailCoordinator: HomeDetailCoordinatorProtocol {
     
-    var rootViewController: UINavigationController?
+    weak var transitionController: UINavigationController?
     var childCoordinators: [Coordinarot] = []
     var handlerBback: (() -> Void)?
     private var controller: UIViewController?
@@ -45,7 +45,7 @@ class HomeDetailCoordinator: HomeDetailCoordinatorProtocol {
     
     func pushNextVc(_ vc: UIViewController) {
         controller = vc
-        rootViewController?.pushViewController(vc, animated: true)
+        transitionController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -65,7 +65,7 @@ extension HomeDetailCoordinator {
         case .next:
             
             var detailCoordinator: HomeDetailNextCoordinatorProtocol = HomeDetailNextCoordinator()
-            detailCoordinator.rootViewController = rootViewController
+            detailCoordinator.transitionController = transitionController
             childCoordinators.append(detailCoordinator)
             detailCoordinator.start()
             detailCoordinator.handlerBback = { [unowned self] in
@@ -78,7 +78,7 @@ extension HomeDetailCoordinator {
             
         case .back:
             guard let controller = controller else { return }
-            rootViewController?.popToViewController(controller, animated: true)
+            transitionController?.popToViewController(controller, animated: true)
             childCoordinators.removeLast()
             self.controller = nil
             childCoordinators = []

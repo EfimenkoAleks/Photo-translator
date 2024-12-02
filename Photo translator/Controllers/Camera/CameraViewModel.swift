@@ -28,8 +28,9 @@ class CameraViewModel: ObservableObject {
     @Published var showSettingAlert = false
     @Published var isPermissionGranted: Bool = false
     @Published private var flashMode: AVCaptureDevice.FlashMode = .off
-    private var presentData: Data?
     var alertError: Alert!
+    private var presentData: Data?
+    private var coordinator: CameraModuleCoordinator
     
     // Reference to the AVCaptureSession.
     var session: AVCaptureSession = .init()
@@ -37,8 +38,9 @@ class CameraViewModel: ObservableObject {
     // Cancellable storage for Combine subscribers.
     private var cancelables = Set<AnyCancellable>()
     
-    init(cameraManager: CameraManager = CameraManager(), imageStorage: ImageStorage = ImageStorage.shared) {
+    init(coordinator: CameraModuleCoordinator, cameraManager: CameraManager = CameraManager(), imageStorage: ImageStorage = ImageStorage.shared) {
         // Initialize the session with the cameraManager's session.
+        self.coordinator = coordinator
         self.cameraManager = cameraManager
         self.imageStorage = imageStorage
         session = cameraManager.session

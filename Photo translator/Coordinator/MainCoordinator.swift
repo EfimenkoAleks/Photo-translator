@@ -9,8 +9,8 @@ import SwiftUI
 import Combine
 
 final class MainCoordinator: Coordinarot {
-    
- //   var window: UIWindow?
+    var transitionController: UINavigationController?
+ 
     var rootViewController: UIViewController?
     var typeHandler: Block<(DP_TabBarSelectedItem)>?
     private var selectedTab: DP_TabBarSelectedItem
@@ -25,7 +25,6 @@ final class MainCoordinator: Coordinarot {
         let vc = DP_TabBarController(hasSeenOnboarding: hasSeenOnboarding, selectedTab: selectedTab)
         vc.setSelectedTab()
         rootViewController = vc
-  //      window?.rootViewController = vc
         vc.typeHandler = { [weak self] type in
             self?.typeHandler?(type)
         }

@@ -39,15 +39,14 @@ enum HomeDetailNextCoordinatorEvent {
 
 protocol HomeDetailNextCoordinatorProtocol: Coordinarot {
     var handlerBback: (() -> Void)? { get set }
-    var rootViewController: UINavigationController?  { get set }
-    func start()
     func eventOccurred(with type: HomeDetailNextCoordinatorEvent)
 }
 
 class HomeDetailNextCoordinator: HomeDetailNextCoordinatorProtocol {
+   
     var cildren: [Coordinarot] = []
     
-    var rootViewController: UINavigationController?
+    weak var transitionController: UINavigationController?
     var handlerBback: (() -> Void)?
     private var controller: UIViewController?
     
@@ -66,7 +65,7 @@ class HomeDetailNextCoordinator: HomeDetailNextCoordinatorProtocol {
     
     func pushNextVc(_ vc: UIViewController) {
         controller = vc
-        rootViewController?.pushViewController(vc, animated: true)
+        transitionController?.pushViewController(vc, animated: true)
     }
 }
 
@@ -76,7 +75,7 @@ extension HomeDetailNextCoordinator {
             
         case .back:
             guard let controller = controller else { return }
-            rootViewController?.popToViewController(controller, animated: true)
+            transitionController?.popToViewController(controller, animated: true)
             self.controller = nil
             cildren.removeLast()
         }

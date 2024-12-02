@@ -9,12 +9,12 @@ import SwiftUI
 
 open class NavCoordinator<Router: NavigationRouter>: ObservableObject, Coordinarot {
 
-    public let navigationController: UINavigationController
+    public var transitionController: UINavigationController?
     public let startingRoute: Router?
     private var animated: Bool = true
 
     public init(navigationController: UINavigationController = .init(), startingRoute: Router? = nil) {
-        self.navigationController = navigationController
+        self.transitionController = navigationController
         self.startingRoute = startingRoute
     }
 
@@ -29,26 +29,26 @@ open class NavCoordinator<Router: NavigationRouter>: ObservableObject, Coordinar
         let viewController = UIHostingController(rootView: viewWithCoordinator)
         switch route.transition {
         case .push:
-            navigationController.pushViewController(viewController, animated: animated)
+            transitionController?.pushViewController(viewController, animated: animated)
         case .presentModally:
             viewController.modalPresentationStyle = .formSheet
-            navigationController.present(viewController, animated: animated)
+            transitionController?.present(viewController, animated: animated)
         case .presentFullscreen:
             viewController.modalPresentationStyle = .fullScreen
-            navigationController.present(viewController, animated: animated)
+            transitionController?.present(viewController, animated: animated)
         }
     }
 
     func pop() {
-        navigationController.popViewController(animated: animated)
+        transitionController?.popViewController(animated: animated)
     }
 
     func popToRoot() {
-        navigationController.popToRootViewController(animated: animated)
+        transitionController?.popToRootViewController(animated: animated)
     }
 
     func dismiss() {
-        navigationController.dismiss(animated: true) { [weak self] in
+        transitionController?.dismiss(animated: true) { [weak self] in
             /// because there is a leak in UIHostingControllers that prevents from deallocation
      //       self?.navigationController.viewControllers = []
         }

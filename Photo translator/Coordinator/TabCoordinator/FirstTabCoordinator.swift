@@ -12,17 +12,26 @@ enum FirstTabEvent {
     case language, gallery, policy, home, removeChild
 }
 
-final class FirstTabCoordinator: FirstTabModuleCoordinator {
+protocol FirstTabCoordinatorInterface: Coordinarot, AnyObject {
+    func eventOccurred(with type: FirstTabEvent)
+}
+
+final class FirstTabCoordinator: FirstTabCoordinatorInterface {
     
-    weak var transitionController: UIViewController?
+    weak var transitionController: UINavigationController?
     private var hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>
     
     init(hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>) {
         self.hasSeenOnboarding = hasSeenOnboarding
     }
+    
+    func start() {
+        let module = HomeAssembly().createModule(coordinator: self)
+        transitionController?.setViewControllers([module.view], animated: false)
+    }
 }
 
-extension FirstTabCoordinator {
+extension FirstTabCoordinator: FirstTabModuleCoordinator {
     
     func eventOccurred(with type: FirstTabEvent) {
         switch type {

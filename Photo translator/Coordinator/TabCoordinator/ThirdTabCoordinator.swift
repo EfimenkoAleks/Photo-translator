@@ -8,9 +8,13 @@
 import SwiftUI
 import Combine
 
+enum ThirdTabEvent {
+    case lastPhoto, home, removeChild
+}
+
 final class ThirdTabCoordinator: Coordinarot {
     
-    var rootViewController: UINavigationController?
+    weak var transitionController: UINavigationController?
     private var hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>
     
     init(hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>) {
@@ -18,8 +22,13 @@ final class ThirdTabCoordinator: Coordinarot {
     }
     
     func start() {
-        let vModel = TranslateViewModel()
+        let vModel = TranslateViewModel(coordinator: self)
         let vc = UIHostingController(rootView: ThirdTabView(viewModel: vModel))
-        rootViewController?.setViewControllers([vc], animated: false)
+        transitionController?.setViewControllers([vc], animated: false)
+    }
+}
+
+extension ThirdTabCoordinator: TranslateModuleCoordinator {
+    func eventOccurred(with type: ThirdTabEvent) {
     }
 }

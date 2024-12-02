@@ -18,8 +18,11 @@ final class TranslateViewModel: ObservableObject {
     var inputLang: TranslateLanguage = TranslateLanguage.english
     var outputLang: TranslateLanguage = DP_TranslateManager.shared.currentLanguages ?? TranslateLanguage.english
     var allLanguage: [TranslateLanguage] = DP_TranslateManager.shared.allLanguages
+    private var coordinator: TranslateModuleCoordinator
     
-    init() {
+    init(coordinator: TranslateModuleCoordinator) {
+        
+        self.coordinator = coordinator
    
         buttonNameLeft = "Download model"
         buttonNameRight = "Download model"

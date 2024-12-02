@@ -9,48 +9,48 @@ import SwiftUI
 import Combine
 
 final class OnboardingCoordinator: Coordinarot {
-    
-    var rootViewController: UINavigationController?
+    var transitionController: UINavigationController?
+   
     private var childCoordinators: [Coordinarot] = []
     private var hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>
     
     init(hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>) {
         self.hasSeenOnboarding = hasSeenOnboarding
-        rootViewController = UINavigationController()
+        transitionController = UINavigationController()
     }
     
     func start() {
         switch hasSeenOnboarding.value {
         case .home:
             let firstCoordinator = HomeDetailCoordinator()
-            firstCoordinator.rootViewController = rootViewController
+            firstCoordinator.transitionController = transitionController
             firstCoordinator.start()
             self.childCoordinators.append(firstCoordinator)
             firstCoordinator.childCoordinators = childCoordinators
             firstCoordinator.handlerBback = { [weak self] in
                 self?.childCoordinators = []
-                self?.rootViewController = nil
+                self?.transitionController = nil
                 self?.hasSeenOnboarding.send(.main)
             }
         case .camera:
             var detailCoordinator: HomeDetailNextCoordinatorProtocol = HomeDetailNextCoordinator()
-            detailCoordinator.rootViewController = rootViewController
+            detailCoordinator.transitionController = transitionController
             childCoordinators.append(detailCoordinator)
             detailCoordinator.start()
             detailCoordinator.handlerBback = { [weak self] in
                 self?.childCoordinators = []
-                self?.rootViewController = nil
+                self?.transitionController = nil
                 self?.hasSeenOnboarding.send(.main)
             }
         case .translate:
             let firstCoordinator = HomeDetailCoordinator()
-            firstCoordinator.rootViewController = rootViewController
+            firstCoordinator.transitionController = transitionController
             firstCoordinator.start()
             self.childCoordinators.append(firstCoordinator)
             firstCoordinator.childCoordinators = childCoordinators
             firstCoordinator.handlerBback = { [weak self] in
                 self?.childCoordinators = []
-                self?.rootViewController = nil
+                self?.transitionController = nil
                 self?.hasSeenOnboarding.send(.main)
             }
         default:
