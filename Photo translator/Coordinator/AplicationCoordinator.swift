@@ -12,11 +12,12 @@ enum NavDetailCoordinator {
     case home, camera, translate, main
 }
 
-final class AplicationCoordinator: Coordinarot {
+final class AplicationCoordinator: Coordinator {
+    var childCoordinators: [Coordinator] = []
+    
     var transitionController: UINavigationController?
     
     var window: UIWindow
-    var childCoordinator: [Coordinarot] = []
     var selectedTab: DP_TabBarSelectedItem = .photo
     var navigateOnboarding = CurrentValueSubject<NavDetailCoordinator, Never>(.main)
     var subscriptions = Set<AnyCancellable>()
@@ -33,7 +34,7 @@ final class AplicationCoordinator: Coordinarot {
                 // Start main coordinator
                 let mainCoordinator = MainCoordinator(hasSeenOnboarding: self.navigateOnboarding, selectedTab: self.selectedTab)
                 mainCoordinator.start()
-                self.childCoordinator = [mainCoordinator]
+                self.childCoordinators = [mainCoordinator]
                 self.window.rootViewController = mainCoordinator.rootViewController
                 mainCoordinator.typeHandler = { [weak self] type in
                     guard let self = self else { return }
@@ -44,7 +45,7 @@ final class AplicationCoordinator: Coordinarot {
                 // Start onboarding coordinator
                 let onboardingCoordinator = OnboardingCoordinator(hasSeenOnboarding: self.navigateOnboarding)
                 onboardingCoordinator.start()
-                self.childCoordinator = [onboardingCoordinator]
+                self.childCoordinators = [onboardingCoordinator]
                 self.window.rootViewController = onboardingCoordinator.transitionController
             }
         }

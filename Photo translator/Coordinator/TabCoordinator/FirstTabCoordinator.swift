@@ -9,15 +9,16 @@ import SwiftUI
 import Combine
 
 enum FirstTabEvent {
-    case language, gallery, policy, home, removeChild
+    case language, gallery, policy, detail(Int)
 }
 
-protocol FirstTabCoordinatorInterface: Coordinarot, AnyObject {
+protocol FirstTabCoordinatorInterface: Coordinator, AnyObject {
     func eventOccurred(with type: FirstTabEvent)
 }
 
 final class FirstTabCoordinator: FirstTabCoordinatorInterface {
     
+    var childCoordinators: [Coordinator] = []
     weak var transitionController: UINavigationController?
     private var hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>
     
@@ -56,14 +57,17 @@ extension FirstTabCoordinator: FirstTabModuleCoordinator {
             print("policy")
    //         transitionController?.navigationController?.pushViewController(vc, animated: true)
             break
-            
-        case .home:
-            hasSeenOnboarding.send(.home)
-            
-        case .removeChild:
-//                        guard let controller = controller else { return }
-//                        controller.removeChild()
-            break
+        
+        case .detail(let number):
+            var homeDetailCoordinator: HomeDetailCoordinatorProtocol = HomeDetailCoordinator(hasSeenOnboarding: hasSeenOnboarding)
+            homeDetailCoordinator.transitionController = transitionController
+            homeDetailCoordinator.start(photoNumber: number)
+//            homeDetailCoordinator.handlerBback = { [unowned self] in
+//                self.eventOccurred(with: .back)
+//            }
+           
+//        case .back:
+//            hasSeenOnboarding.send(.home)
         }
     }
 }

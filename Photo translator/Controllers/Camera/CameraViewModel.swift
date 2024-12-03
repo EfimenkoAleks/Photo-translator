@@ -19,7 +19,7 @@ class CameraViewModel: ObservableObject {
     
     // Reference to the CameraManager.
     @ObservedObject var cameraManager: CameraManager
-    var imageStorage: ImageStorage
+    private var imageStorage: ImageStorage
     
     // Published properties to trigger UI updates.
     @Published var isFlashOn = false

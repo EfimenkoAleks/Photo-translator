@@ -8,7 +8,9 @@
 import SwiftUI
 import Combine
 
-final class MainCoordinator: Coordinarot {
+final class MainCoordinator: Coordinator {
+    var childCoordinators: [Coordinator] = []
+    
     var transitionController: UINavigationController?
  
     var rootViewController: UIViewController?

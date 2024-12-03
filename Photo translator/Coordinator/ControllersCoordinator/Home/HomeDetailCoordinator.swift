@@ -14,74 +14,38 @@ enum HomeDetailCoordinatorEvent {
     case back
 }
 
-protocol HomeDetailCoordinatorProtocol: Coordinarot {
+protocol HomeDetailCoordinatorProtocol: Coordinator, HomeDetailModuleCoordinator {
     var handlerBback: (() -> Void)? { get set }
-    func start()
     func eventOccurred(with type: HomeDetailCoordinatorEvent)
+    func start(photoNumber: Int)
 }
 
 class HomeDetailCoordinator: HomeDetailCoordinatorProtocol {
     
+    var childCoordinators: [Coordinator] = []
     weak var transitionController: UINavigationController?
-    var childCoordinators: [Coordinarot] = []
     var handlerBback: (() -> Void)?
-    private var controller: UIViewController?
-    
-        init() {}
+    private var hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>
  
-    func start() {
-        let vModel = HomeDetailViewModel()
-        let first = HomeView(viewModel: vModel) { [weak self] event in
-            switch event {
-            case .back:
-                self?.handlerBback?()
-            case .next:
-                self?.eventOccurred(with: .next)
-            }
-        }
-        let vc = UIHostingController(rootView: first)
-        pushNextVc(vc)
+    init(hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>) {
+        self.hasSeenOnboarding = hasSeenOnboarding
     }
-    
-    func pushNextVc(_ vc: UIViewController) {
-        controller = vc
-        transitionController?.pushViewController(vc, animated: true)
+ 
+    func start(photoNumber: Int) {
+        let module = HomeDetailAssembly().createModule(coordinator: self, photoNumber: photoNumber)
+        transitionController?.setViewControllers([module.view], animated: false)
     }
 }
 
 extension HomeDetailCoordinator {
     func eventOccurred(with type: HomeDetailCoordinatorEvent) {
         switch type {
-//        case .price:
-//            guard let controller = controller else { return }
-//            let child = SM_PayViewController()
-//            child.modalPresentationStyle = .fullScreen
-//            child.isModalInPresentation = true
-//            child.preferredContentSize = controller.view.frame.size
-//            controller.present(child, animated: true)
-//            child.eventHandlerBack = { [weak self] _ in
-//                self?.sm_eventOccurred(with: .removeChild)
-//            }
+
         case .next:
-            
-            var detailCoordinator: HomeDetailNextCoordinatorProtocol = HomeDetailNextCoordinator()
-            detailCoordinator.transitionController = transitionController
-            childCoordinators.append(detailCoordinator)
-            detailCoordinator.start()
-            detailCoordinator.handlerBback = { [unowned self] in
-                self.eventOccurred(with: .back)
-            }
-            
-//        case .removeChild:
-//            guard let controller = controller else { return }
-//            controller.removeChild()
-            
+            break
+
         case .back:
-            guard let controller = controller else { return }
-            transitionController?.popToViewController(controller, animated: true)
-            childCoordinators.removeLast()
-            self.controller = nil
-            childCoordinators = []
+            hasSeenOnboarding.send(.main)
         }
     }
 }

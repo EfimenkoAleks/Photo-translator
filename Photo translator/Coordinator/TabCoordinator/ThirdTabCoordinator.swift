@@ -12,8 +12,9 @@ enum ThirdTabEvent {
     case lastPhoto, home, removeChild
 }
 
-final class ThirdTabCoordinator: Coordinarot {
-    
+final class ThirdTabCoordinator: Coordinator {
+    var childCoordinators: [Coordinator] = []
+   
     weak var transitionController: UINavigationController?
     private var hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>
     

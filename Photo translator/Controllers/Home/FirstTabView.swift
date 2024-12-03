@@ -28,6 +28,7 @@ struct FirstTabView: View {
                     
                                             .onTapGesture {
                                                 print("Tap \(photo.image.lastPathComponent)")
+                                                viewModel.showPhoto(number: Int(photo.image.lastPathComponent))
                                             }
                     
                 }

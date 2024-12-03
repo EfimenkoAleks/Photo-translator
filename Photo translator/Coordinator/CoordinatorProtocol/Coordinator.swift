@@ -7,7 +7,8 @@
 
 import UIKit
 
-protocol Coordinarot {
+protocol Coordinator {
+    var childCoordinators: [Coordinator] {get set}
     var transitionController: UINavigationController? {get set}
-    func start()
+ //   func start()
 }

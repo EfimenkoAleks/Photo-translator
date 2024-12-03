@@ -21,7 +21,6 @@
 		CE0EE1FF2C931C0A003C4E19 /* FirstTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0EE1FE2C931C0A003C4E19 /* FirstTabCoordinator.swift */; };
 		CE0EE2012C931C27003C4E19 /* SecondTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0EE2002C931C27003C4E19 /* SecondTabCoordinator.swift */; };
 		CE0EE2032C931CCE003C4E19 /* ThirdTabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0EE2022C931CCE003C4E19 /* ThirdTabCoordinator.swift */; };
-		CE0EE2082C93207B003C4E19 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0EE2072C93207B003C4E19 /* HomeView.swift */; };
 		CE0EE20B2C9337BD003C4E19 /* FirstTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0EE20A2C9337BD003C4E19 /* FirstTabView.swift */; };
 		CE0EE20D2C9337EF003C4E19 /* SecondTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0EE20C2C9337EF003C4E19 /* SecondTabView.swift */; };
 		CE0EE20F2C933827003C4E19 /* ThirdTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0EE20E2C933827003C4E19 /* ThirdTabView.swift */; };
@@ -37,7 +36,6 @@
 		CE1750292CA6EF1E003FF3AC /* LanguagePickerWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1750282CA6EF1E003FF3AC /* LanguagePickerWheel.swift */; };
 		CE17502B2CA6EF40003FF3AC /* TranslateButtonsLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE17502A2CA6EF40003FF3AC /* TranslateButtonsLoad.swift */; };
 		CE17502D2CA6EF5E003FF3AC /* LoadText.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE17502C2CA6EF5E003FF3AC /* LoadText.swift */; };
-		CE37C89C2C982223001065DA /* HomeDetailNextCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37C89B2C982223001065DA /* HomeDetailNextCoordinator.swift */; };
 		CE37C8A32C99B0DF001065DA /* HomeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37C8A22C99B0DF001065DA /* HomeDetailViewModel.swift */; };
 		CE37C8A62C99BF6C001065DA /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37C8A52C99BF6C001065DA /* HomeViewModel.swift */; };
 		CE37C8A92C99BFFC001065DA /* CameraViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE37C8A82C99BFFC001065DA /* CameraViewModel.swift */; };
@@ -77,6 +75,9 @@
 		CECED7AB2CF8B0E3006374E9 /* CameraInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECED7AA2CF8B0E3006374E9 /* CameraInterfaces.swift */; };
 		CECED7AD2CF8B3F5006374E9 /* TranslateInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECED7AC2CF8B3F5006374E9 /* TranslateInterfaces.swift */; };
 		CECED7AF2CFDB3F1006374E9 /* HomeAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECED7AE2CFDB3F1006374E9 /* HomeAssembly.swift */; };
+		CECED7B12CFF11E9006374E9 /* HomeDetailAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECED7B02CFF11E9006374E9 /* HomeDetailAssembly.swift */; };
+		CECED7B32CFF1206006374E9 /* HomeDetailInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECED7B22CFF1206006374E9 /* HomeDetailInterfaces.swift */; };
+		CECED7B52CFF8522006374E9 /* HomeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECED7B42CFF8522006374E9 /* HomeDetailView.swift */; };
 		CEF472822CEF93B900C3BA6D /* ListPhotocellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF472812CEF93B900C3BA6D /* ListPhotocellViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -99,7 +100,6 @@
 		CE0EE1FE2C931C0A003C4E19 /* FirstTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTabCoordinator.swift; sourceTree = "<group>"; };
 		CE0EE2002C931C27003C4E19 /* SecondTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTabCoordinator.swift; sourceTree = "<group>"; };
 		CE0EE2022C931CCE003C4E19 /* ThirdTabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTabCoordinator.swift; sourceTree = "<group>"; };
-		CE0EE2072C93207B003C4E19 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		CE0EE20A2C9337BD003C4E19 /* FirstTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTabView.swift; sourceTree = "<group>"; };
 		CE0EE20C2C9337EF003C4E19 /* SecondTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondTabView.swift; sourceTree = "<group>"; };
 		CE0EE20E2C933827003C4E19 /* ThirdTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdTabView.swift; sourceTree = "<group>"; };
@@ -115,7 +115,6 @@
 		CE1750282CA6EF1E003FF3AC /* LanguagePickerWheel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePickerWheel.swift; sourceTree = "<group>"; };
 		CE17502A2CA6EF40003FF3AC /* TranslateButtonsLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateButtonsLoad.swift; sourceTree = "<group>"; };
 		CE17502C2CA6EF5E003FF3AC /* LoadText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadText.swift; sourceTree = "<group>"; };
-		CE37C89B2C982223001065DA /* HomeDetailNextCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailNextCoordinator.swift; sourceTree = "<group>"; };
 		CE37C8A22C99B0DF001065DA /* HomeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewModel.swift; sourceTree = "<group>"; };
 		CE37C8A52C99BF6C001065DA /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		CE37C8A82C99BFFC001065DA /* CameraViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewModel.swift; sourceTree = "<group>"; };
@@ -155,6 +154,9 @@
 		CECED7AA2CF8B0E3006374E9 /* CameraInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraInterfaces.swift; sourceTree = "<group>"; };
 		CECED7AC2CF8B3F5006374E9 /* TranslateInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateInterfaces.swift; sourceTree = "<group>"; };
 		CECED7AE2CFDB3F1006374E9 /* HomeAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembly.swift; sourceTree = "<group>"; };
+		CECED7B02CFF11E9006374E9 /* HomeDetailAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailAssembly.swift; sourceTree = "<group>"; };
+		CECED7B22CFF1206006374E9 /* HomeDetailInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailInterfaces.swift; sourceTree = "<group>"; };
+		CECED7B42CFF8522006374E9 /* HomeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailView.swift; sourceTree = "<group>"; };
 		CEF472812CEF93B900C3BA6D /* ListPhotocellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPhotocellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -312,7 +314,6 @@
 			isa = PBXGroup;
 			children = (
 				CE0EE2102C9339FA003C4E19 /* HomeDetailCoordinator.swift */,
-				CE37C89B2C982223001065DA /* HomeDetailNextCoordinator.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -334,8 +335,10 @@
 		CE37C8A12C99B0AD001065DA /* HomeDetail */ = {
 			isa = PBXGroup;
 			children = (
-				CE0EE2072C93207B003C4E19 /* HomeView.swift */,
+				CECED7B42CFF8522006374E9 /* HomeDetailView.swift */,
 				CE37C8A22C99B0DF001065DA /* HomeDetailViewModel.swift */,
+				CECED7B02CFF11E9006374E9 /* HomeDetailAssembly.swift */,
+				CECED7B22CFF1206006374E9 /* HomeDetailInterfaces.swift */,
 			);
 			path = HomeDetail;
 			sourceTree = "<group>";
@@ -654,7 +657,6 @@
 				CE6DCEEB2CB7E0E7006B63DA /* CMSampleBuffer+Extension.swift in Sources */,
 				CE0EE1FA2C91D315003C4E19 /* NavigationRouter.swift in Sources */,
 				CECED7AF2CFDB3F1006374E9 /* HomeAssembly.swift in Sources */,
-				CE0EE2082C93207B003C4E19 /* HomeView.swift in Sources */,
 				CE37C8A62C99BF6C001065DA /* HomeViewModel.swift in Sources */,
 				CE6DCEE92CB7DD05006B63DA /* CameraManager.swift in Sources */,
 				CEF472822CEF93B900C3BA6D /* ListPhotocellViewModel.swift in Sources */,
@@ -668,10 +670,10 @@
 				CE3B72AC2C9D729800798798 /* DP_BaseGradientView.swift in Sources */,
 				CE0EE1FF2C931C0A003C4E19 /* FirstTabCoordinator.swift in Sources */,
 				CE17501B2CA183FC003FF3AC /* DP_HomeMenuEvent.swift in Sources */,
-				CE37C89C2C982223001065DA /* HomeDetailNextCoordinator.swift in Sources */,
 				CE0EE2032C931CCE003C4E19 /* ThirdTabCoordinator.swift in Sources */,
 				CE5ED6222C9C26C60077DB35 /* FileManager.swift in Sources */,
 				CE1750222CA2BD5A003FF3AC /* DP_TabBarController.swift in Sources */,
+				CECED7B32CFF1206006374E9 /* HomeDetailInterfaces.swift in Sources */,
 				CE1750192CA165EC003FF3AC /* ListPhotoCell.swift in Sources */,
 				CECED7AB2CF8B0E3006374E9 /* CameraInterfaces.swift in Sources */,
 				CE0EE1DC2C91D0A8003C4E19 /* AppDelegate.swift in Sources */,
@@ -697,6 +699,7 @@
 				CE3B72AE2C9D72EC00798798 /* UIImage+Extension.swift in Sources */,
 				CE0EE1FC2C91D35C003C4E19 /* NavigationTranisitionStylel.swift in Sources */,
 				CE17502B2CA6EF40003FF3AC /* TranslateButtonsLoad.swift in Sources */,
+				CECED7B12CFF11E9006374E9 /* HomeDetailAssembly.swift in Sources */,
 				CE5ED6412C9C716E0077DB35 /* String+Extension.swift in Sources */,
 				CE37C8A32C99B0DF001065DA /* HomeDetailViewModel.swift in Sources */,
 				CE37C8AC2C99C0FA001065DA /* TranslateViewModel.swift in Sources */,
@@ -708,6 +711,7 @@
 				CE3B72B02C9D733200798798 /* UIView+Extension.swift in Sources */,
 				CE6BA1EE2CD2323400F5CE89 /* CameraDelegate.swift in Sources */,
 				CE3B72B22C9D7EAF00798798 /* DP_TabbarModels.swift in Sources */,
+				CECED7B52CFF8522006374E9 /* HomeDetailView.swift in Sources */,
 				CE5ED63A2C9C32DF0077DB35 /* DP_VideoManager.swift in Sources */,
 				CE5ED6432C9C71DF0077DB35 /* DP_ConstantUserDefaultsKeys.swift in Sources */,
 				CE5ED6482C9CAC680077DB35 /* UIColor+Extension.swift in Sources */,

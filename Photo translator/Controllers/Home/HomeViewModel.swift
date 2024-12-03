@@ -62,6 +62,11 @@ final class HomeViewModel: FirstTabModuleViewModel, ObservableObject {
         imageStorage.dp_deletePhoto(url: url)
     }
     
+    func showPhoto(number: Int?) {
+        guard let numberPhoto = number else { return }
+        coordinator.eventOccurred(with: .detail(numberPhoto))
+    }
+    
     func whitScreen() -> CGFloat {
         return UIScreen.main.bounds.width
     }

@@ -12,8 +12,8 @@ enum SecondTabEvent {
     case lastPhoto, home, removeChild
 }
 
-final class SecondTabCoordinator: Coordinarot {
-    
+final class SecondTabCoordinator: Coordinator {
+    var childCoordinators: [Coordinator] = []
     weak var transitionController: UINavigationController?
     private var hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>
     

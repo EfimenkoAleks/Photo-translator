@@ -139,7 +139,7 @@ class ImageStorage: ObservableObject {
         return rezUrl
     }
     
-    func dp_fetchAssets(completionHandler: @escaping (PHFetchResult<PHAsset>?) -> Void) {
+    private func dp_fetchAssets(completionHandler: @escaping (PHFetchResult<PHAsset>?) -> Void) {
         var allPhotos: PHFetchResult<PHAsset>?
         PHPhotoLibrary.requestAuthorization { (status) in
             switch status {

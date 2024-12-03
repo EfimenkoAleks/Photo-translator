@@ -8,10 +8,10 @@
 import SwiftUI
 import Combine
 
-final class OnboardingCoordinator: Coordinarot {
+final class OnboardingCoordinator: Coordinator {
     var transitionController: UINavigationController?
    
-    private var childCoordinators: [Coordinarot] = []
+    var childCoordinators: [Coordinator] = []
     private var hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>
     
     init(hasSeenOnboarding: CurrentValueSubject<NavDetailCoordinator, Never>) {
@@ -22,37 +22,20 @@ final class OnboardingCoordinator: Coordinarot {
     func start() {
         switch hasSeenOnboarding.value {
         case .home:
-            let firstCoordinator = HomeDetailCoordinator()
+            var firstCoordinator: HomeDetailCoordinatorProtocol = HomeDetailCoordinator(hasSeenOnboarding: hasSeenOnboarding)
             firstCoordinator.transitionController = transitionController
-            firstCoordinator.start()
+            firstCoordinator.start(photoNumber: 1)
             self.childCoordinators.append(firstCoordinator)
             firstCoordinator.childCoordinators = childCoordinators
-            firstCoordinator.handlerBback = { [weak self] in
-                self?.childCoordinators = []
-                self?.transitionController = nil
-                self?.hasSeenOnboarding.send(.main)
-            }
+//            firstCoordinator.handlerBback = { [weak self] in
+//                self?.childCoordinators = []
+//                self?.transitionController = nil
+//                self?.hasSeenOnboarding.send(.main)
+//            }
         case .camera:
-            var detailCoordinator: HomeDetailNextCoordinatorProtocol = HomeDetailNextCoordinator()
-            detailCoordinator.transitionController = transitionController
-            childCoordinators.append(detailCoordinator)
-            detailCoordinator.start()
-            detailCoordinator.handlerBback = { [weak self] in
-                self?.childCoordinators = []
-                self?.transitionController = nil
-                self?.hasSeenOnboarding.send(.main)
-            }
+           break
         case .translate:
-            let firstCoordinator = HomeDetailCoordinator()
-            firstCoordinator.transitionController = transitionController
-            firstCoordinator.start()
-            self.childCoordinators.append(firstCoordinator)
-            firstCoordinator.childCoordinators = childCoordinators
-            firstCoordinator.handlerBback = { [weak self] in
-                self?.childCoordinators = []
-                self?.transitionController = nil
-                self?.hasSeenOnboarding.send(.main)
-            }
+           break
         default:
             break
         }
