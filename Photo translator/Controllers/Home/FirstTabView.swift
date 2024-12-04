@@ -26,11 +26,9 @@ struct FirstTabView: View {
                         .listRowBackground(Color.clear)
                         .background(Color.clear)
                     
-                                            .onTapGesture {
-                                                print("Tap \(photo.image.lastPathComponent)")
-                                                viewModel.showPhoto(number: Int(photo.image.lastPathComponent))
-                                            }
-                    
+                        .onTapGesture {
+                            viewModel.showPhoto(number: Int(photo.image.lastPathComponent))
+                        }
                 }
                 .onDelete(perform: delete)
                 .padding(EdgeInsets.init(top: 0, leading: -20, bottom: 0, trailing: -20))
@@ -94,7 +92,7 @@ struct FirstTabView: View {
         guard let index = offsets.first else { return }
         
         viewModel.removePhoto(index: index, pined: pickerSelection)
-        }
+    }
     
     func createPhoto(url: URL) -> Data {
         do {

@@ -12,6 +12,7 @@ import Combine
 enum HomeDetailCoordinatorEvent {
     case next
     case back
+    case share(UIImage?)
 }
 
 protocol HomeDetailCoordinatorProtocol: Coordinator, HomeDetailModuleCoordinator {
@@ -41,6 +42,13 @@ extension HomeDetailCoordinator {
     func eventOccurred(with type: HomeDetailCoordinatorEvent) {
         switch type {
 
+        case .share(let image):
+            guard let image = image else { return }
+            
+                let imageShare = [ image ]
+                let activityViewController = UIActivityViewController(activityItems: imageShare , applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = transitionController?.topViewController?.view
+            transitionController?.present(activityViewController, animated: true, completion: nil)
         case .next:
             break
 

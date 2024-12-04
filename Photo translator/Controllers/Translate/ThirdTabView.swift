@@ -9,6 +9,11 @@ import SwiftUI
 
 struct ThirdTabView: View {
     
+    private struct settings {
+        static var arrowRight: String = "arrowshape.right.fill"
+        static var squareArrowUp: String = "square.and.arrow.up"
+    }
+    
     @ObservedObject var viewModel: TranslateViewModel
     @State private var content1 = ""
     @State private var content2 = ""
@@ -31,7 +36,7 @@ struct ThirdTabView: View {
                     Button {
                         viewModel.sendTranslate()
                     } label: {
-                        Label("", systemImage: "arrowshape.right.fill")
+                        Label("", systemImage: settings.arrowRight)
                             .foregroundStyle(.black)
                     }
                     
@@ -49,7 +54,8 @@ struct ThirdTabView: View {
                     Button {
                         
                     } label: {
-                        Image(systemName: "square.and.arrow.up")
+                        Image(systemName: settings.squareArrowUp)
+                            .foregroundColor(Color(uiColor: DP_Colors.blue.color))
                     }
                 }
             }

@@ -21,17 +21,12 @@ final class OnboardingCoordinator: Coordinator {
     
     func start() {
         switch hasSeenOnboarding.value {
-        case .home:
-            var firstCoordinator: HomeDetailCoordinatorProtocol = HomeDetailCoordinator(hasSeenOnboarding: hasSeenOnboarding)
-            firstCoordinator.transitionController = transitionController
-            firstCoordinator.start(photoNumber: 1)
-            self.childCoordinators.append(firstCoordinator)
-            firstCoordinator.childCoordinators = childCoordinators
-//            firstCoordinator.handlerBback = { [weak self] in
-//                self?.childCoordinators = []
-//                self?.transitionController = nil
-//                self?.hasSeenOnboarding.send(.main)
-//            }
+        case .home(let number):
+            var homeDetailCoordinator: HomeDetailCoordinatorProtocol = HomeDetailCoordinator(hasSeenOnboarding: hasSeenOnboarding)
+            homeDetailCoordinator.transitionController = transitionController
+            homeDetailCoordinator.start(photoNumber: number)
+            childCoordinators.append(homeDetailCoordinator)
+            homeDetailCoordinator.childCoordinators = childCoordinators
         case .camera:
            break
         case .translate:

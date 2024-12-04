@@ -58,6 +58,10 @@ final class HomeDetailViewModel: ObservableObject, HomeDetailModuleViewModel {
         .store(in: &cancellables)
     }
     
+    func sendPhoto() {
+        transitionTo(.share(translateImage))
+    }
+    
     func transitionTo(_ event: HomeDetailCoordinatorEvent) {
         coordinator.eventOccurred(with: event)
     }

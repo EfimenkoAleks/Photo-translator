@@ -47,7 +47,7 @@ extension SecondTabCoordinator: CameraModuleCoordinator {
             break
             
         case .home:
-            hasSeenOnboarding.send(.home)
+           break
             
         case .removeChild:
 //                        guard let controller = controller else { return }

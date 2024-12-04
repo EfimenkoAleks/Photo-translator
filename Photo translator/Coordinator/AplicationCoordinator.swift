@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 enum NavDetailCoordinator {
-    case home, camera, translate, main
+    case home(Int), camera, translate, main
 }
 
 final class AplicationCoordinator: Coordinator {

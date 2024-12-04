@@ -10,6 +10,11 @@ import AVFoundation
 
 struct SecondTabView: View {
     
+    private struct settings {
+        static var bolt: String = "bolt.fill"
+        static var boltSlash: String = "bolt.slash.fill"
+    }
+    
     @ObservedObject var viewModel: CameraViewModel
     @State private var isFocused = false
     @State private var focusLocation: CGPoint = .zero
@@ -20,8 +25,11 @@ struct SecondTabView: View {
         GeometryReader { geometry in
             ZStack {
                 //  Color.black.edgesIgnoringSafeArea(.all)
+//                LinearGradient(colors: [Color(uiColor: DP_Colors.gradientTop.color), Color(uiColor: DP_Colors.gradientBottom.color)], startPoint: .top, endPoint: .bottom)
+//                    .edgesIgnoringSafeArea(.bottom)
+                
                 LinearGradient(colors: [Color(uiColor: DP_Colors.gradientTop.color), Color(uiColor: DP_Colors.gradientBottom.color)], startPoint: .top, endPoint: .bottom)
-                    .edgesIgnoringSafeArea(.bottom)
+                    .ignoresSafeArea()
                 
                 VStack(spacing: 0) {
                     CameraPreview(session: viewModel.session) { tapPoint in
@@ -69,7 +77,8 @@ struct SecondTabView: View {
                 Button {
                     viewModel.switchFlash()
                 } label: {
-                    Image(systemName: viewModel.isFlashOn ? "bolt.fill" : "bolt.slash.fill")
+                    Image(systemName: viewModel.isFlashOn ? settings.bolt : settings.boltSlash)
+                        .foregroundColor(viewModel.isFlashOn ? Color.yellow : Color(uiColor: DP_Colors.blue.color))
                 }
                 .accentColor(viewModel.isFlashOn ? .yellow : .gray)
             }
@@ -127,6 +136,10 @@ struct PhotoThumbnail: View {
 
 struct CaptureButton: View {
     
+    private struct settings {
+        static var camera: String = "camera.fill"
+    }
+    
     var action: () -> Void
     
     var body: some View {
@@ -139,7 +152,7 @@ struct CaptureButton: View {
                         .stroke(Color.blue.opacity(0.8), lineWidth: 2)
                         .frame(width: 59, height: 59, alignment: .center)
                         .overlay(
-                            Image(systemName: "camera.fill")
+                            Image(systemName: settings.camera)
                                 .frame(width: 44, height: 44)
                                 .foregroundColor(.blue))
                 )
@@ -149,6 +162,10 @@ struct CaptureButton: View {
 
 struct CameraSwitchButton: View {
     
+    private struct settings {
+        static var arrowTriangle: String = "arrow.triangle.2.circlepath"
+    }
+    
     var action: () -> Void
     
     var body: some View {
@@ -157,7 +174,7 @@ struct CameraSwitchButton: View {
                 .foregroundColor(Color.white)
                 .frame(width: 45, height: 45, alignment: .center)
                 .overlay(
-                    Image(systemName: "arrow.triangle.2.circlepath")
+                    Image(systemName: settings.arrowTriangle)
                         .foregroundColor(Color.blue))
         }
     }

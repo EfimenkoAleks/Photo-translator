@@ -9,17 +9,22 @@ import SwiftUI
 
 struct HomeDetailView: View {
     
+    private struct settings {
+        static var arrowBack: String = "arrowBack"
+        static var squareArrowUp: String = "square.and.arrow.up"
+    }
+    
     @ObservedObject var viewModel: HomeDetailViewModel
  
     var btnBack : some View { Button(action: {
         viewModel.transitionTo(.back)
     }) {
         HStack {
-            Image("arrowBack")
+            Image(settings.arrowBack)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 44, height: 44)
-                .foregroundColor(.white)
+                .foregroundColor(Color(uiColor: DP_Colors.blue.color))
             Text("")
         }
     }
@@ -27,7 +32,9 @@ struct HomeDetailView: View {
     
     var body: some View {
         
-        ZStack() {
+        ZStack {
+            LinearGradient(colors: [Color(uiColor: DP_Colors.gradientTop.color), Color(uiColor: DP_Colors.gradientBottom.color)], startPoint: .top, endPoint: .bottom)
+                .ignoresSafeArea()
             
             Image(uiImage: viewModel.translateImage ?? UIImage())
                 .resizable()
@@ -41,12 +48,14 @@ struct HomeDetailView: View {
                     viewModel.dp_didTapPin()
                 } label: {
                     Image(systemName: viewModel.pinedImage)
+                        .foregroundColor(Color(uiColor: DP_Colors.blue.color))
                 }
                 
                 Button {
-                    
+                    viewModel.sendPhoto()
                 } label: {
-                    Image(systemName: "square.and.arrow.up")
+                    Image(systemName: settings.squareArrowUp)
+                        .foregroundColor(Color(uiColor: DP_Colors.blue.color))
                 }
             }
         }

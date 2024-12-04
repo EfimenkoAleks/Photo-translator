@@ -59,15 +59,7 @@ extension FirstTabCoordinator: FirstTabModuleCoordinator {
             break
         
         case .detail(let number):
-            var homeDetailCoordinator: HomeDetailCoordinatorProtocol = HomeDetailCoordinator(hasSeenOnboarding: hasSeenOnboarding)
-            homeDetailCoordinator.transitionController = transitionController
-            homeDetailCoordinator.start(photoNumber: number)
-//            homeDetailCoordinator.handlerBback = { [unowned self] in
-//                self.eventOccurred(with: .back)
-//            }
-           
-//        case .back:
-//            hasSeenOnboarding.send(.home)
+            hasSeenOnboarding.send(.home(number))
         }
     }
 }
