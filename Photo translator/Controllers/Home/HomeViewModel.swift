@@ -7,53 +7,44 @@
 
 import Combine
 import SwiftUI
-import UIKit
-import Vision
-import MLKitTranslate
 
 final class HomeViewModel: FirstTabModuleViewModel, ObservableObject {
     
     @Published var photos: [HomeModel]
     @Published var pinedPhotos: [HomeModel]
-  //  @Published var name: String?
     private var imageStorage: ImageStorage
     private var cancellables = Set<AnyCancellable>()
-//    var doneRequested: ((FirstTabEvent) -> Void)?
     private var coordinator: FirstTabCoordinatorInterface
- //   private var photoManager: DP_PhotoManager
     
     init(coordinator: FirstTabCoordinatorInterface, storage: ImageStorage = ImageStorage.shared) {
         
+        photos = []
+        pinedPhotos = []
         self.coordinator = coordinator
         self.imageStorage = storage
             
-        photos = imageStorage.photos
-        pinedPhotos = imageStorage.pinedPhotos
-            
         bindImage()
-        fetchPinedPhotos()
-        }
+    }
     
     func transsitionTo(_ transition: FirstTabEvent)  {
         coordinator.eventOccurred(with: transition)
     }
     
-    func bindImage() {
+    private func bindImage() {
         imageStorage.$photos.sink { [weak self] in
             self?.photos = $0
+        }
+        .store(in: &cancellables)
+        
+        imageStorage.$pinedPhotos.sink { [weak self] in
+            self?.pinedPhotos = $0
         }
         .store(in: &cancellables)
     }
     
     func fetchPhotos() {
         imageStorage.dp_getPhotos()
-    }
-    
-    func fetchPinedPhotos() {
-        imageStorage.$pinedPhotos.sink { [weak self] in
-            self?.pinedPhotos = $0
-        }
-        .store(in: &cancellables)
+        imageStorage.dp_getPinedPhotos()
     }
     
     func removePhoto(index: Int, pined: Int) {

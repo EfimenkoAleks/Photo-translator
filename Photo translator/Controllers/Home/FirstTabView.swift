@@ -106,7 +106,7 @@ struct FirstTabView: View {
     
     func pinned(pined: Int) -> [HomeModel] {
         var source: [HomeModel] = []
-        source = pickerSelection == 0 ? viewModel.photos : viewModel.pinedPhotos
+        source = pined == 0 ? viewModel.photos : viewModel.pinedPhotos
         return source
     }
 }

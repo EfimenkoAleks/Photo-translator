@@ -35,6 +35,21 @@ struct HomeDetailView: View {
           //      .edgesIgnoringSafeArea(.top)
            
         }
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button {
+                    viewModel.dp_didTapPin()
+                } label: {
+                    Image(systemName: viewModel.pinedImage)
+                }
+                
+                Button {
+                    
+                } label: {
+                    Image(systemName: "square.and.arrow.up")
+                }
+            }
+        }
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: btnBack)
     }

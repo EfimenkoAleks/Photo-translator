@@ -14,8 +14,6 @@ protocol FirstTabModuleCoordinator: AnyObject {
 protocol FirstTabModuleViewModel: AnyObject {
     var photos: [HomeModel] {get set}
     var pinedPhotos: [HomeModel] {get set}
-    func bindImage()
     func transsitionTo(_ transition: FirstTabEvent)
     func fetchPhotos()
-    func fetchPinedPhotos()
 }

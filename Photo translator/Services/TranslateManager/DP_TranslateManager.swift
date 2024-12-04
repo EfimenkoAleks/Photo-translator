@@ -21,7 +21,7 @@ final class DP_TranslateManager: NSObject {
     var languages: [TranslateLanguage] = []
     var currentLanguages: TranslateLanguage?
     var originalLanguages: TranslateLanguage?
-    private var preferens: DP_PreferencesProtocol = DP_Preferences()
+    private var preferens: DP_PreferencesProtocol
     
      var translator: Translator!
      let locale = Locale.current
@@ -30,8 +30,8 @@ final class DP_TranslateManager: NSObject {
          < locale.localizedString(forLanguageCode: $1.rawValue)!
      }
     
-    override init() {
-        super.init()
+    init(preferences: DP_PreferencesProtocol = DP_Preferences()) {
+        self.preferens = preferences
         
         guard let lang = preferens.dp_getStartLang() else { return }
         currentLanguages = TranslateLanguage(rawValue: lang)

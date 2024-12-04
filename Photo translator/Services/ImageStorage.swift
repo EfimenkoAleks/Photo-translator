@@ -23,8 +23,6 @@ class ImageStorage: ObservableObject {
     private init(preferens: DP_PreferencesProtocol = DP_Preferences(), storage: DP_FileManager = DP_FileManager.shared) {
         self.preferens = preferens
         self.storage = storage
-   //     dp_getPhotos() //getMockData()
-        pinedPhotos = getMockPinedData()
     }
  
     func dp_deletePhoto(url: URL) {
@@ -49,38 +47,32 @@ class ImageStorage: ObservableObject {
             return HomeModel(id: UUID(), title: "", time: dateCreated, image: url)
         }
         
-        models = models.sorted(by: {$0.time > $1.time})
+        models = models.sorted(by: {Int($0.image.lastPathComponent) ?? 0 > Int($1.image.lastPathComponent) ?? 1})
         photos = models
     }
+    
+    func dp_getPinedPhotos() {
+        let arrInt = preferens.dp_getPinedPhotoNumber()
+        
+       let paths = arrInt.compactMap({DP_FileManager.shared.dp_getFileUrlFromPath("\($0)")})
+        var models: [HomeModel] = paths.map { url -> HomeModel in
+          var dateCreated = ""
+            if let attributes = try? FileManager.default.attributesOfItem(atPath: url.path) as [FileAttributeKey: Any],
+                let creationDate = attributes[FileAttributeKey.creationDate] as? Date {
+                dateCreated = Date.sm_convertDateToString(date: creationDate, formatter: "dd.MM.yy HH:mm")
+                }
+            return HomeModel(id: UUID(), title: "", time: dateCreated, image: url)
+        }
+        
+        models = models.sorted(by: {Int($0.image.lastPathComponent) ?? 0 > Int($1.image.lastPathComponent) ?? 1})
+        pinedPhotos = models
+    }
+    
     
     private func dp_getNumber() -> [Int] {
         preferens.dp_getPhotoNumber()
     }
-    
-    private func getMockData() -> [HomeModel] {
-        let mok = [
-            HomeModel(id: UUID(), title: "wish-i-knew", time: "February 17, 2019", image: URL(string: "https://youtu.be/EgpKu1tAVMY")!),
-            HomeModel(id: UUID(), title: "wish-i-knew2", time: "February 17, 2019", image: URL(string: "https://youtu.be/EgpKu1tAVMY")!),
-            HomeModel(id: UUID(), title: "wish-i-knew3", time: "February 17, 2019", image: URL(string: "https://youtu.be/EgpKu1tAVMY")!),
-            HomeModel(id: UUID(), title: "wish-i-knew4", time: "February 17, 2019", image: URL(string: "https://youtu.be/EgpKu1tAVMY")!),
-            HomeModel(id: UUID(), title: "wish-i-knew5", time: "February 17, 2019", image: URL(string: "https://youtu.be/EgpKu1tAVMY")!),
-            HomeModel(id: UUID(), title: "wish-i-knew6", time: "February 17, 2019", image: URL(string: "https://youtu.be/EgpKu1tAVMY")!),
-            HomeModel(id: UUID(), title: "wish-i-knew7", time: "February 17, 2019", image: URL(string: "https://youtu.be/EgpKu1tAVMY")!),
-            HomeModel(id: UUID(), title: "wish-i-knew8", time: "February 17, 2019", image: URL(string: "https://youtu.be/EgpKu1tAVMY")!),
-            HomeModel(id: UUID(), title: "wish-i-knew9", time: "February 17, 2019", image: URL(string: "https://youtu.be/EgpKu1tAVMY")!),
-            HomeModel(id: UUID(), title: "wish-i-knew10", time: "February 17, 2019", image: URL(string: "https://youtu.be/EgpKu1tAVMY")!)
-        ]
-        return mok
-    }
-    
-    private func getMockPinedData() -> [HomeModel] {
-        let mok = [
-            HomeModel(id: UUID(), title: "wish-i-knew", time: "February 17, 2019", image: URL(string: "https://youtu.be/EgpKu1tAVMY")!),
-            HomeModel(id: UUID(), title: "wish-i-knew2", time: "February 17, 2019", image: URL(string: "https://youtu.be/EgpKu1tAVMY")!),
-        ]
-        return mok
-    }
-    
+ 
     func convertImage(url: URL, completion: @escaping (UIImage?) -> Void) {
         convertQueue.async {
             guard let data = try? Data(contentsOf: url),
