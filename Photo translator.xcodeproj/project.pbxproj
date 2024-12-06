@@ -78,6 +78,9 @@
 		CECED7B12CFF11E9006374E9 /* HomeDetailAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECED7B02CFF11E9006374E9 /* HomeDetailAssembly.swift */; };
 		CECED7B32CFF1206006374E9 /* HomeDetailInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECED7B22CFF1206006374E9 /* HomeDetailInterfaces.swift */; };
 		CECED7B52CFF8522006374E9 /* HomeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECED7B42CFF8522006374E9 /* HomeDetailView.swift */; };
+		CEE7F5C02D030C7F007CD8D0 /* CameraAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7F5BF2D030C7F007CD8D0 /* CameraAssembly.swift */; };
+		CEE7F5C42D030F6B007CD8D0 /* TranslateAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7F5C32D030F6B007CD8D0 /* TranslateAssembly.swift */; };
+		CEE7F5C62D031084007CD8D0 /* TranslateModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7F5C52D031084007CD8D0 /* TranslateModels.swift */; };
 		CEF472822CEF93B900C3BA6D /* ListPhotocellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEF472812CEF93B900C3BA6D /* ListPhotocellViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -157,6 +160,9 @@
 		CECED7B02CFF11E9006374E9 /* HomeDetailAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailAssembly.swift; sourceTree = "<group>"; };
 		CECED7B22CFF1206006374E9 /* HomeDetailInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailInterfaces.swift; sourceTree = "<group>"; };
 		CECED7B42CFF8522006374E9 /* HomeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailView.swift; sourceTree = "<group>"; };
+		CEE7F5BF2D030C7F007CD8D0 /* CameraAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAssembly.swift; sourceTree = "<group>"; };
+		CEE7F5C32D030F6B007CD8D0 /* TranslateAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateAssembly.swift; sourceTree = "<group>"; };
+		CEE7F5C52D031084007CD8D0 /* TranslateModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateModels.swift; sourceTree = "<group>"; };
 		CEF472812CEF93B900C3BA6D /* ListPhotocellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPhotocellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -253,8 +259,6 @@
 		CE0EE2042C931F93003C4E19 /* ControllersCoordinator */ = {
 			isa = PBXGroup;
 			children = (
-				CE37C8A02C99AEBC001065DA /* Translate */,
-				CE37C89F2C998C97001065DA /* Camera */,
 				CE37C89E2C998C8C001065DA /* Home */,
 			);
 			path = ControllersCoordinator;
@@ -318,25 +322,11 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		CE37C89F2C998C97001065DA /* Camera */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Camera;
-			sourceTree = "<group>";
-		};
-		CE37C8A02C99AEBC001065DA /* Translate */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Translate;
-			sourceTree = "<group>";
-		};
 		CE37C8A12C99B0AD001065DA /* HomeDetail */ = {
 			isa = PBXGroup;
 			children = (
-				CECED7B42CFF8522006374E9 /* HomeDetailView.swift */,
-				CE37C8A22C99B0DF001065DA /* HomeDetailViewModel.swift */,
+				CE91BB432D0318080001E20B /* View */,
+				CE91BB442D0318140001E20B /* ViewModel */,
 				CECED7B02CFF11E9006374E9 /* HomeDetailAssembly.swift */,
 				CECED7B22CFF1206006374E9 /* HomeDetailInterfaces.swift */,
 			);
@@ -347,9 +337,9 @@
 			isa = PBXGroup;
 			children = (
 				CE1750172CA165CC003FF3AC /* Cell */,
-				CE0EE20A2C9337BD003C4E19 /* FirstTabView.swift */,
-				CE37C8A52C99BF6C001065DA /* HomeViewModel.swift */,
-				CE37C8AD2C99C362001065DA /* HomeModel.swift */,
+				CE91BB3E2D0316D70001E20B /* View */,
+				CE91BB3F2D0316E20001E20B /* ViewModel */,
+				CE91BB402D0316F20001E20B /* Model */,
 				CECED7A82CF63B29006374E9 /* HomeInterfaces.swift */,
 				CECED7AE2CFDB3F1006374E9 /* HomeAssembly.swift */,
 			);
@@ -360,11 +350,12 @@
 			isa = PBXGroup;
 			children = (
 				CECD8D012CABEDAD003ADDD1 /* SubViews */,
-				CE0EE20C2C9337EF003C4E19 /* SecondTabView.swift */,
-				CE37C8A82C99BFFC001065DA /* CameraViewModel.swift */,
+				CE91BB412D03170C0001E20B /* View */,
+				CE91BB422D0317190001E20B /* ViewModel */,
 				CE6BA1EB2CC910EB00F5CE89 /* CameraPreview.swift */,
 				CE6BA1ED2CD2323400F5CE89 /* CameraDelegate.swift */,
 				CECED7AA2CF8B0E3006374E9 /* CameraInterfaces.swift */,
+				CEE7F5BF2D030C7F007CD8D0 /* CameraAssembly.swift */,
 			);
 			path = Camera;
 			sourceTree = "<group>";
@@ -373,9 +364,11 @@
 			isa = PBXGroup;
 			children = (
 				CE1750252CA6EED7003FF3AC /* SubView */,
-				CE0EE20E2C933827003C4E19 /* ThirdTabView.swift */,
-				CE37C8AB2C99C0FA001065DA /* TranslateViewModel.swift */,
+				CEE7F5C82D0310B2007CD8D0 /* View */,
+				CEE7F5C92D0310BD007CD8D0 /* ViewModel */,
+				CEE7F5C72D03108D007CD8D0 /* Models */,
 				CECED7AC2CF8B3F5006374E9 /* TranslateInterfaces.swift */,
+				CEE7F5C32D030F6B007CD8D0 /* TranslateAssembly.swift */,
 			);
 			path = Translate;
 			sourceTree = "<group>";
@@ -500,6 +493,62 @@
 			path = CameraManager;
 			sourceTree = "<group>";
 		};
+		CE91BB3E2D0316D70001E20B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE0EE20A2C9337BD003C4E19 /* FirstTabView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE91BB3F2D0316E20001E20B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE37C8A52C99BF6C001065DA /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CE91BB402D0316F20001E20B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				CE37C8AD2C99C362001065DA /* HomeModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CE91BB412D03170C0001E20B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE0EE20C2C9337EF003C4E19 /* SecondTabView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE91BB422D0317190001E20B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE37C8A82C99BFFC001065DA /* CameraViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CE91BB432D0318080001E20B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CECED7B42CFF8522006374E9 /* HomeDetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CE91BB442D0318140001E20B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE37C8A22C99B0DF001065DA /* HomeDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		CECD8D012CABEDAD003ADDD1 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -507,6 +556,30 @@
 				CECD8D042CABEDE8003ADDD1 /* CameraControlView.swift */,
 			);
 			path = SubViews;
+			sourceTree = "<group>";
+		};
+		CEE7F5C72D03108D007CD8D0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CEE7F5C52D031084007CD8D0 /* TranslateModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CEE7F5C82D0310B2007CD8D0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CE0EE20E2C933827003C4E19 /* ThirdTabView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CEE7F5C92D0310BD007CD8D0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CE37C8AB2C99C0FA001065DA /* TranslateViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		EFADED414626CA0DD574EE78 /* Pods */ = {
@@ -652,6 +725,7 @@
 			files = (
 				CE5ED6262C9C2CD50077DB35 /* PreferencesProtocol.swift in Sources */,
 				CE5ED63D2C9C4D250077DB35 /* Data+Extension.swift in Sources */,
+				CEE7F5C42D030F6B007CD8D0 /* TranslateAssembly.swift in Sources */,
 				CE6BA1EC2CC910EB00F5CE89 /* CameraPreview.swift in Sources */,
 				CE0EE1F32C91D23F003C4E19 /* Coordinator.swift in Sources */,
 				CE6DCEEB2CB7E0E7006B63DA /* CMSampleBuffer+Extension.swift in Sources */,
@@ -691,7 +765,9 @@
 				CE5ED63F2C9C70470077DB35 /* Block.swift in Sources */,
 				CE3B72B62C9D7F7300798798 /* DP_TabBarItem.swift in Sources */,
 				CE0EE20D2C9337EF003C4E19 /* SecondTabView.swift in Sources */,
+				CEE7F5C62D031084007CD8D0 /* TranslateModels.swift in Sources */,
 				CE0EE1DE2C91D0A8003C4E19 /* SceneDelegate.swift in Sources */,
+				CEE7F5C02D030C7F007CD8D0 /* CameraAssembly.swift in Sources */,
 				CE1750202CA2BD22003FF3AC /* DP_CustomTabBar.swift in Sources */,
 				CE8EFF672CDA6E1900BEAFEC /* HPAsset+Extension.swift in Sources */,
 				CE5ED6362C9C329C0077DB35 /* DP_VideoCaptureManager.swift in Sources */,

@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 enum ThirdTabEvent {
-    case lastPhoto, home, removeChild
+    case share(String?)
 }
 
 final class ThirdTabCoordinator: Coordinator {
@@ -23,13 +23,21 @@ final class ThirdTabCoordinator: Coordinator {
     }
     
     func start() {
-        let vModel = TranslateViewModel(coordinator: self)
-        let vc = UIHostingController(rootView: ThirdTabView(viewModel: vModel))
-        transitionController?.setViewControllers([vc], animated: false)
+        let model = TranslateAssembly().createModule(coordinator: self)
+        transitionController?.setViewControllers([model.view], animated: false)
     }
 }
 
 extension ThirdTabCoordinator: TranslateModuleCoordinator {
     func eventOccurred(with type: ThirdTabEvent) {
+        switch type {
+        case .share(let text):
+            guard let text = text else { return }
+            
+                let textShare = [ text ]
+                let activityViewController = UIActivityViewController(activityItems: textShare , applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = transitionController?.topViewController?.view
+            transitionController?.present(activityViewController, animated: true, completion: nil)
+        }
     }
 }

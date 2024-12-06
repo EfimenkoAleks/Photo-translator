@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 enum SecondTabEvent {
-    case lastPhoto, home, removeChild
+    case lastPhoto, home
 }
 
 final class SecondTabCoordinator: Coordinator {
@@ -22,10 +22,8 @@ final class SecondTabCoordinator: Coordinator {
     }
  
     func start() {
-        let vModel = CameraViewModel(coordinator: self)
-        let first = SecondTabView(viewModel: vModel) 
-        let vc = UIHostingController(rootView: first)
-        transitionController?.setViewControllers([vc], animated: false)
+        let module = CameraAssembly().createModule(coordinator: self)
+        transitionController?.setViewControllers([module.view], animated: false)
     }
 }
 
@@ -48,11 +46,6 @@ extension SecondTabCoordinator: CameraModuleCoordinator {
             
         case .home:
            break
-            
-        case .removeChild:
-//                        guard let controller = controller else { return }
-//                        controller.removeChild()
-            break
         }
     }
 }

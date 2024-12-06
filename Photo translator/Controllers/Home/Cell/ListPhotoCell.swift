@@ -9,6 +9,10 @@ import SwiftUI
 
 struct ListPhotoCell: View {
     
+    private struct settings {
+        static var detail: String = "detail"
+    }
+    
     @ObservedObject var viewModel: ListPhotocellViewModel
     var url: URL
     var photo: HomeModel
@@ -47,7 +51,7 @@ struct ListPhotoCell: View {
                 }
                 
                 Spacer()
-                Image("detail")
+                Image(settings.detail)
                 
             }
             .padding(.leading,30)

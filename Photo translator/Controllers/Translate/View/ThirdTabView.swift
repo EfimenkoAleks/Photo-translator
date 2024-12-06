@@ -12,11 +12,12 @@ struct ThirdTabView: View {
     private struct settings {
         static var arrowRight: String = "arrowshape.right.fill"
         static var squareArrowUp: String = "square.and.arrow.up"
+        static var empy: String = ""
     }
     
     @ObservedObject var viewModel: TranslateViewModel
-    @State private var content1 = ""
-    @State private var content2 = ""
+    @State private var content1 = settings.empy
+    @State private var content2 = settings.empy
  //   var doneRequested: () -> Void
     
     var body: some View {
@@ -36,7 +37,7 @@ struct ThirdTabView: View {
                     Button {
                         viewModel.sendTranslate()
                     } label: {
-                        Label("", systemImage: settings.arrowRight)
+                        Label(settings.empy, systemImage: settings.arrowRight)
                             .foregroundStyle(.black)
                     }
                     
@@ -52,7 +53,7 @@ struct ThirdTabView: View {
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button {
-                        
+                        viewModel.sendTranslate()
                     } label: {
                         Image(systemName: settings.squareArrowUp)
                             .foregroundColor(Color(uiColor: DP_Colors.blue.color))

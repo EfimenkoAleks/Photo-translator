@@ -51,7 +51,9 @@ class CameraViewModel: ObservableObject {
         // Deinitializer to stop capturing when the ViewModel is deallocated.
         cameraManager.stopCapturing()
     }
-    
+}
+
+extension CameraViewModel: CameraModuleViewModel {
     func getLastPhoto() {
         imageStorage.dp_getPhotos()
         guard let lastModel = imageStorage.photos.first else { return }
@@ -160,8 +162,6 @@ class CameraViewModel: ObservableObject {
     func zoom(with factor: CGFloat) {
         cameraManager.setZoomScale(factor: factor)
     }
-    
-    
 }
 
 //    func cameraEvents(event: CameraEvent) {

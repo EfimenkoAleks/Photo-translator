@@ -10,6 +10,10 @@ import MLKitTranslate
 
 struct LanguagePickerWheel: View {
     
+    private struct settings {
+        static var onChange: String = "onChange"
+    }
+    
     @Binding var lang: TranslateLanguage
     var languages: [Language]
     var handler: Block<String>?
@@ -24,7 +28,7 @@ struct LanguagePickerWheel: View {
                             .foregroundColor(.black)
                     }
                 }.onChange(of: lang) { _ in
-                    handler?("onChange")
+                    handler?(settings.onChange)
                 }
                 .labelsHidden()
                 .pickerStyle(.wheel)

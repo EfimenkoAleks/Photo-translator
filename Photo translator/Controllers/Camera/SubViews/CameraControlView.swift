@@ -9,6 +9,10 @@ import SwiftUI
 
 struct CameraControlView: View {
     
+    private struct settings {
+        static var arrowCounter: String = "arrow.counterclockwise"
+    }
+    
     @Binding var lastPhoto: UIImage
     var eventHendler: Block<(CameraEvent)>?
     
@@ -38,7 +42,7 @@ struct CameraControlView: View {
                 Button {
                     eventHendler?((.refresh))
                 } label: {
-                    Image(systemName: "arrow.counterclockwise")
+                    Image(systemName: settings.arrowCounter)
                 }
                 .frame(width: 50, height: 50)
                 

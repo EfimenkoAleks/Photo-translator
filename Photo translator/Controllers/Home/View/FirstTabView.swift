@@ -9,6 +9,10 @@ import SwiftUI
 
 struct FirstTabView: View {
     
+    private struct settings {
+        static var settings: String = "settings"
+    }
+    
     @State var pickerSelection = 0
     @ObservedObject var viewModel: HomeViewModel
     var transitions: [DP_HomeMenuEvent] = [.language, .gallery, .translate]
@@ -54,7 +58,7 @@ struct FirstTabView: View {
                             })
                         }
                     } label: {
-                        Label("", image: "settings")
+                        Label("", image: settings.settings)
                         //  .foregroundColor(.white)
                     }
                     .foregroundColor(.white)

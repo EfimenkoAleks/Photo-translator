@@ -9,6 +9,10 @@ import SwiftUI
 
 struct PhotoButton: View {
     
+    private struct settings {
+        static var camera: String = "camera"
+    }
+    
     var eventHendler: Block<(CameraEvent)>?
     
     var body: some View {
@@ -25,7 +29,7 @@ struct PhotoButton: View {
             Button {
                 eventHendler?((.createPhoto))
             } label: {
-                Image(systemName: "camera")
+                Image(systemName: settings.camera)
             }
             .frame(width: 60, height: 60)
             .foregroundStyle(.blue)
