@@ -1,43 +1,48 @@
 //
-//  ImageStorage.swift
+//  ImageServiceImplementation.swift
 //  Photo translator
 //
-//  Created by Aleksandr on 17.09.2024.
+//  Created by Aleksandr on 06.12.2024.
 //
 
 import SwiftUI
 import Photos
 
-class ImageStorage: ObservableObject {
-    
-   static let shared: ImageStorage = ImageStorage()
-    
+final class ImageServiceImplementation: ObservableObject {
+   
     @Published private(set) var photos: [HomeModel] = []
     @Published private(set) var pinedPhotos: [HomeModel] = []
+    var photosPublished: Published<[HomeModel]> { _photos }
+    var photosPublisher: Published<[HomeModel]>.Publisher { $photos }
+    var pinedPhotosPublished: Published<[HomeModel]> { _pinedPhotos }
+    var pinedPhotosPublisher: Published<[HomeModel]>.Publisher { $pinedPhotos }
     
     private let storage: DP_FileManager
     private var preferens: DP_PreferencesProtocol
     private var screenNumber = 0
     private let convertQueue = DispatchQueue(label: "convertQueue", qos: .background, attributes: .concurrent)
     
-    private init(preferens: DP_PreferencesProtocol = DP_Preferences(), storage: DP_FileManager = DP_FileManager.shared) {
+    init(preferens: DP_PreferencesProtocol = DP_Preferences(), storage: DP_FileManager) {
         self.preferens = preferens
         self.storage = storage
     }
- 
+}
+
+extension ImageServiceImplementation : DP_ImageService {
+
     func dp_deletePhoto(url: URL) {
         guard let number = Int(url.lastPathComponent) else { return }
         
         let intArr = preferens.dp_getPhotoNumber()
         let intArrDelete = intArr.filter({$0 != number})
         preferens.dp_deletePhoto(arrInt: intArrDelete)
-        DP_FileManager.shared.dp_removeFile(path: url.lastPathComponent)
+        storage.dp_removeFile(path: url.lastPathComponent)
     }
     
     func dp_getPhotos() {
         let arrInt = dp_getNumber()
         
-       let paths = arrInt.compactMap({DP_FileManager.shared.dp_getFileUrlFromPath("\($0)")})
+       let paths = arrInt.compactMap({storage.dp_getFileUrlFromPath("\($0)")})
         var models: [HomeModel] = paths.map { url -> HomeModel in
           var dateCreated = ""
             if let attributes = try? FileManager.default.attributesOfItem(atPath: url.path) as [FileAttributeKey: Any],
@@ -54,7 +59,7 @@ class ImageStorage: ObservableObject {
     func dp_getPinedPhotos() {
         let arrInt = preferens.dp_getPinedPhotoNumber()
         
-       let paths = arrInt.compactMap({DP_FileManager.shared.dp_getFileUrlFromPath("\($0)")})
+       let paths = arrInt.compactMap({storage.dp_getFileUrlFromPath("\($0)")})
         var models: [HomeModel] = paths.map { url -> HomeModel in
           var dateCreated = ""
             if let attributes = try? FileManager.default.attributesOfItem(atPath: url.path) as [FileAttributeKey: Any],
@@ -73,7 +78,7 @@ class ImageStorage: ObservableObject {
         preferens.dp_getPhotoNumber()
     }
  
-    func convertImage(url: URL, completion: @escaping (UIImage?) -> Void) {
+    func dp_convertImage(url: URL, completion: @escaping (UIImage?) -> Void) {
         convertQueue.async {
             guard let data = try? Data(contentsOf: url),
                   let image = UIImage(data: data) else  {
@@ -100,7 +105,7 @@ class ImageStorage: ObservableObject {
     func dp_getPhotos(completion: @escaping ([HomeModel]) -> Void) {
         let arrInt = preferens.dp_getPhotoNumber()
         
-       let paths = arrInt.compactMap({DP_FileManager.shared.dp_getFileUrlFromPath("\($0)")})
+       let paths = arrInt.compactMap({storage.dp_getFileUrlFromPath("\($0)")})
         var models: [HomeModel] = paths.map { url -> HomeModel in
           var dateCreated = ""
             if let attributes = try? FileManager.default.attributesOfItem(atPath: url.path) as [FileAttributeKey: Any],
@@ -120,7 +125,7 @@ class ImageStorage: ObservableObject {
         screenNumber = lastNumber.last ?? 0
         screenNumber += 1
         
-        let photo = DP_FileManager.shared.dp_saveData(data, path: "\(screenNumber)")
+        let photo = storage.dp_saveData(data, path: "\(screenNumber)")
         preferens.dp_saveNumberPhoto(number: screenNumber)
         switch photo {
         case .loaded(let url):
@@ -146,7 +151,7 @@ class ImageStorage: ObservableObject {
         }
     }
     
-    func sm_getLastPhoto(completion: @escaping (UIImage?) -> Void) {
+    func dp_getLastPhoto(completion: @escaping (UIImage?) -> Void) {
         var photos: [PHAsset] = []
         dp_fetchAssets { results in
             guard let results = results else { return }

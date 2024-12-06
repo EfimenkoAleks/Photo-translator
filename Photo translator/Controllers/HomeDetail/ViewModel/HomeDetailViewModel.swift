@@ -17,19 +17,19 @@ final class HomeDetailViewModel: ObservableObject, HomeDetailModuleViewModel {
     
     @Published var translateImage: UIImage?
     @Published var pinedImage: String
-    private var imageStorage: ImageStorage
+    private var imageService: DP_ImageService
     private var cancellables = Set<AnyCancellable>()
     private var coordinator: HomeDetailModuleCoordinator
     private var numberPhoto: Int
     private var fileManager: DP_FileManager
     private var preferens: DP_PreferencesProtocol
     
-    init(imageStorage: ImageStorage = ImageStorage.shared, photoNumber: Int, coordinator: HomeDetailModuleCoordinator, fileManager: DP_FileManager = DP_FileManager.shared, preferences: DP_PreferencesProtocol = DP_Preferences()) {
+    init(imageService: DP_ImageService = DIContainer.default.imageService, photoNumber: Int, coordinator: HomeDetailModuleCoordinator, fileManager: DP_FileManager = DIContainer.default.storage, preferences: DP_PreferencesProtocol = DP_Preferences()) {
         
         self.preferens = preferences
         self.fileManager = fileManager
         self.numberPhoto = photoNumber
-        self.imageStorage = imageStorage
+        self.imageService = imageService
         self.coordinator = coordinator
         self.pinedImage = settings.notPinedIcon
         self.pinedImage = self.pinStatus()
@@ -39,12 +39,12 @@ final class HomeDetailViewModel: ObservableObject, HomeDetailModuleViewModel {
     }
     
     func fetchPhotos(number: Int) {
-        imageStorage.dp_getPhotos()
-        imageStorage.$photos.sink { [weak self] newValue in
+        imageService.dp_getPhotos()
+        imageService.photosPublisher.sink { [weak self] newValue in
             
             guard let self = self,
-                  self.imageStorage.photos.count > 0 else { return }
-            let photos = self.imageStorage.photos.map({$0.image})
+                  self.imageService.photos.count > 0 else { return }
+            let photos = self.imageService.photos.map({$0.image})
             let numbers = photos.map({$0.lastPathComponent})
             let firstIndex = numbers.firstIndex(where: {$0 == String(number)})
             
@@ -67,7 +67,7 @@ final class HomeDetailViewModel: ObservableObject, HomeDetailModuleViewModel {
     }
     
     private func convertImage(url: URL, completion: @escaping (UIImage?) -> Void) {
-        imageStorage.convertImage(url: url) { image in
+        imageService.dp_convertImage(url: url) { image in
             completion(image)
         }
     }

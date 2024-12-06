@@ -10,18 +10,18 @@ import SwiftUI
 
 class ListPhotocellViewModel: ObservableObject {
  
-    var imageStorage: ImageStorage
+    var imageService: DP_ImageService
 
     @Published var capturedImage: UIImage
   
-    init(imageStorage: ImageStorage = ImageStorage.shared) {
+    init(imageService: DP_ImageService = DIContainer.default.imageService) {
      
-        self.imageStorage = imageStorage
+        self.imageService = imageService
         self.capturedImage = UIImage()
     }
    
     func convertImage(url: URL) {
-        imageStorage.convertImage(url: url) { image in
+        imageService.dp_convertImage(url: url) { image in
             DispatchQueue.main.sync { [weak self] in
                 self?.capturedImage = image ?? UIImage()
             }

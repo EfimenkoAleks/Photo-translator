@@ -12,16 +12,16 @@ final class HomeViewModel: FirstTabModuleViewModel, ObservableObject {
     
     @Published var photos: [HomeModel]
     @Published var pinedPhotos: [HomeModel]
-    private var imageStorage: ImageStorage
+    private var imageService: DP_ImageService
     private var cancellables = Set<AnyCancellable>()
     private var coordinator: FirstTabCoordinatorInterface
     
-    init(coordinator: FirstTabCoordinatorInterface, storage: ImageStorage = ImageStorage.shared) {
+    init(coordinator: FirstTabCoordinatorInterface, imageService: DP_ImageService = DIContainer.default.imageService) {
         
         photos = []
         pinedPhotos = []
         self.coordinator = coordinator
-        self.imageStorage = storage
+        self.imageService = imageService
             
         bindImage()
     }
@@ -31,26 +31,26 @@ final class HomeViewModel: FirstTabModuleViewModel, ObservableObject {
     }
     
     private func bindImage() {
-        imageStorage.$photos.sink { [weak self] in
+        imageService.photosPublisher.sink { [weak self] in
             self?.photos = $0
         }
         .store(in: &cancellables)
         
-        imageStorage.$pinedPhotos.sink { [weak self] in
+        imageService.pinedPhotosPublisher.sink { [weak self] in
             self?.pinedPhotos = $0
         }
         .store(in: &cancellables)
     }
     
     func fetchPhotos() {
-        imageStorage.dp_getPhotos()
-        imageStorage.dp_getPinedPhotos()
+        imageService.dp_getPhotos()
+        imageService.dp_getPinedPhotos()
     }
     
     func removePhoto(index: Int, pined: Int) {
         let arr = pined == 0 ? photos : pinedPhotos
         let url = arr[index].image
-        imageStorage.dp_deletePhoto(url: url)
+        imageService.dp_deletePhoto(url: url)
     }
     
     func showPhoto(number: Int?) {

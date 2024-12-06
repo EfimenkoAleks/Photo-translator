@@ -18,8 +18,8 @@ enum CameraEvent {
 class CameraViewModel: ObservableObject {
     
     // Reference to the CameraManager.
-    @ObservedObject var cameraManager: CameraManager
-    private var imageStorage: ImageStorage
+    @ObservedObject var cameraManager: CameraManagerImplementation
+    private var imageService: DP_ImageService
     
     // Published properties to trigger UI updates.
     @Published var isFlashOn = false
@@ -38,11 +38,11 @@ class CameraViewModel: ObservableObject {
     // Cancellable storage for Combine subscribers.
     private var cancelables = Set<AnyCancellable>()
     
-    init(coordinator: CameraModuleCoordinator, cameraManager: CameraManager = CameraManager(), imageStorage: ImageStorage = ImageStorage.shared) {
+    init(coordinator: CameraModuleCoordinator, cameraManager: CameraManagerImplementation = DIContainer.default.cameraManager, imageService: DP_ImageService = DIContainer.default.imageService) {
         // Initialize the session with the cameraManager's session.
         self.coordinator = coordinator
         self.cameraManager = cameraManager
-        self.imageStorage = imageStorage
+        self.imageService = imageService
         session = cameraManager.session
         getLastPhoto()
     }
@@ -55,8 +55,8 @@ class CameraViewModel: ObservableObject {
 
 extension CameraViewModel: CameraModuleViewModel {
     func getLastPhoto() {
-        imageStorage.dp_getPhotos()
-        guard let lastModel = imageStorage.photos.first else { return }
+        imageService.dp_getPhotos()
+        guard let lastModel = imageService.photos.first else { return }
         convertImage(url: lastModel.image) { image in
             DispatchQueue.main.async { [weak self] in
                 self?.capturedImage = image
@@ -65,28 +65,28 @@ extension CameraViewModel: CameraModuleViewModel {
     }
     
     func convertImage(url: URL, completion: @escaping (UIImage?) -> Void) {
-        imageStorage.convertImage(url: url) { image in
+        imageService.dp_convertImage(url: url) { image in
             completion(image)
         }
     }
     
     // Setup Combine bindings for handling publisher's emit values
     func setupBindings() {
-        cameraManager.$shouldShowAlertView.sink { [weak self] value in
+        cameraManager.shouldShowAlertViewPublisher.sink { [weak self] value in
             // Update alertError and showAlertError based on cameraManager's state.
             self?.alertError = self?.cameraManager.alertError
             self?.showAlertError = value
         }
         .store(in: &cancelables)
         
-        cameraManager.$capturedImage.sink { [weak self] imageData in
+        cameraManager.capturedImagePublisher.sink { [weak self] imageData in
             
             guard let self = self,
                   let data = imageData,
                   self.presentData != data else { return }
             
             self.presentData = data
-            _ = self.imageStorage.dp_saveNewPhoto(data: data)
+            _ = self.imageService.dp_saveNewPhoto(data: data)
             DispatchQueue.main.async {
                 guard let image = UIImage(data: data) else { return }
                 self.capturedImage = image

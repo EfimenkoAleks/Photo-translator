@@ -23,15 +23,19 @@ final class TranslateViewModel: ObservableObject {
     @Published var buttonNameRight: String
     @Published var loadingText: String
     @Published var placeholder: String
+    var translateManager : DP_TranslateManager
     var inputLang: TranslateLanguage = TranslateLanguage.english
-    var outputLang: TranslateLanguage = DP_TranslateManager.shared.currentLanguages ?? TranslateLanguage.english
-    var allLanguage: [TranslateLanguage] = DP_TranslateManager.shared.allLanguages
+    var outputLang: TranslateLanguage
+    var allLanguage: [TranslateLanguage]
     private var coordinator: TranslateModuleCoordinator
     
-    init(coordinator: TranslateModuleCoordinator) {
+    init(coordinator: TranslateModuleCoordinator, translateManager: DP_TranslateManager = DIContainer.default.tranalateManager) {
         
         self.coordinator = coordinator
    
+        self.translateManager = translateManager
+        outputLang = self.translateManager.currentLanguages ?? TranslateLanguage.english
+        allLanguage = self.translateManager.allLanguages
         buttonNameLeft = settings.downloadModel
         buttonNameRight = settings.downloadModel
         loadingText = settings.load
@@ -53,7 +57,7 @@ extension TranslateViewModel: TranslateModuleViewModel {
     }
     
     func findLang(input: TranslateLanguage) -> TranslateLanguage {
-       let firstt = DP_TranslateManager.shared.allLanguages.first(where: {$0 == input})
+       let firstt = allLanguage.first(where: {$0 == input})
         return firstt ?? TranslateLanguage.english
     }
     

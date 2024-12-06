@@ -1,8 +1,8 @@
 //
-//  DP_TranslateManager.swift
+//  TranslateManagerImplementation.swift
 //  Photo translator
 //
-//  Created by Aleksandr on 19.09.2024.
+//  Created by Aleksandr on 06.12.2024.
 //
 
 import UIKit
@@ -14,21 +14,19 @@ enum TranslateLangEvents {
     case noLanguage
 }
 
-final class DP_TranslateManager: NSObject {
-    
-    static let shared: DP_TranslateManager = DP_TranslateManager()
+final class TranslateManagerImplementation: NSObject {
     
     var languages: [TranslateLanguage] = []
     var currentLanguages: TranslateLanguage?
     var originalLanguages: TranslateLanguage?
     private var preferens: DP_PreferencesProtocol
     
-     var translator: Translator!
-     let locale = Locale.current
-     lazy var allLanguages = TranslateLanguage.allLanguages().sorted {
-       return locale.localizedString(forLanguageCode: $0.rawValue)!
-         < locale.localizedString(forLanguageCode: $1.rawValue)!
-     }
+    var translator: Translator!
+    let locale = Locale.current
+    lazy var allLanguages = TranslateLanguage.allLanguages().sorted {
+        return locale.localizedString(forLanguageCode: $0.rawValue)!
+        < locale.localizedString(forLanguageCode: $1.rawValue)!
+    }
     
     init(preferences: DP_PreferencesProtocol = DP_Preferences()) {
         self.preferens = preferences
@@ -36,10 +34,13 @@ final class DP_TranslateManager: NSObject {
         guard let lang = preferens.dp_getStartLang() else { return }
         currentLanguages = TranslateLanguage(rawValue: lang)
     }
+}
+
+extension TranslateManagerImplementation: DP_TranslateManager {
     
     func setOptionTranslate(inputLang: TranslateLanguage, outputLang: TranslateLanguage) {
         let options = TranslatorOptions(sourceLanguage: inputLang, targetLanguage: outputLang)
-          DP_TranslateManager.shared.translator = Translator.translator(options: options)
+          translator = Translator.translator(options: options)
     }
     
     func dp_identityLanguage(text: String, completion: @escaping (String?) -> Void) {
@@ -173,4 +174,3 @@ final class DP_TranslateManager: NSObject {
         modelManager.download(model, conditions: conditions)
     }
 }
-

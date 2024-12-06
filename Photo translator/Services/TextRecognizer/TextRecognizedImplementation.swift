@@ -1,20 +1,17 @@
 //
-//  DP_TextRecognizedManager.swift
+//  TextRecognizedImplementation.swift
 //  Photo translator
 //
-//  Created by Aleksandr on 19.09.2024.
+//  Created by Aleksandr on 06.12.2024.
 //
 
 import Foundation
 import UIKit
 import Vision
 
-final class DP_TextRecognizedManager: NSObject {
-    
-    static let shared: DP_TextRecognizedManager = DP_TextRecognizedManager()
-    
-  //  private let photoHelper: DP_PhotoHelper = DP_PhotoHelper()
-    
+final class TextRecognizedImplementation: NSObject {}
+
+extension TextRecognizedImplementation: DP_TextRecognized {
     func dp_textRecognized(in image: UIImage, completion: @escaping (DP_ResponseTranslateModel) -> Void) {
         guard let cgImage = image.cgImage else { return }
         let size = CGSize(width: cgImage.width, height: cgImage.height)
