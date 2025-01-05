@@ -113,6 +113,15 @@ struct SecondTabView: View {
     }
 }
 
+struct CustomModyfire: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .aspectRatio(contentMode: .fill)
+            .frame(width: 60, height: 60)
+            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+    }
+}
+
 struct PhotoThumbnail: View {
     
     @Binding var image: UIImage?
@@ -122,9 +131,7 @@ struct PhotoThumbnail: View {
             if let image = image {
                 Image(uiImage: image)
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 60, height: 60)
-                    .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    .modifier(CustomModyfire())
             } else {
                 Rectangle()
                     .frame(width: 50, height: 50, alignment: .center)

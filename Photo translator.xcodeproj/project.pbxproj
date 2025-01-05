@@ -82,6 +82,8 @@
 		CECED7B12CFF11E9006374E9 /* HomeDetailAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECED7B02CFF11E9006374E9 /* HomeDetailAssembly.swift */; };
 		CECED7B32CFF1206006374E9 /* HomeDetailInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECED7B22CFF1206006374E9 /* HomeDetailInterfaces.swift */; };
 		CECED7B52CFF8522006374E9 /* HomeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CECED7B42CFF8522006374E9 /* HomeDetailView.swift */; };
+		CED9CAD02D29967700B2686D /* TabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED9CACF2D29967700B2686D /* TabbarView.swift */; };
+		CEDE3C342D0AEF48004A2E01 /* Locator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDE3C332D0AEF48004A2E01 /* Locator.swift */; };
 		CEE7F5C02D030C7F007CD8D0 /* CameraAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7F5BF2D030C7F007CD8D0 /* CameraAssembly.swift */; };
 		CEE7F5C42D030F6B007CD8D0 /* TranslateAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7F5C32D030F6B007CD8D0 /* TranslateAssembly.swift */; };
 		CEE7F5C62D031084007CD8D0 /* TranslateModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE7F5C52D031084007CD8D0 /* TranslateModels.swift */; };
@@ -168,6 +170,8 @@
 		CECED7B02CFF11E9006374E9 /* HomeDetailAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailAssembly.swift; sourceTree = "<group>"; };
 		CECED7B22CFF1206006374E9 /* HomeDetailInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailInterfaces.swift; sourceTree = "<group>"; };
 		CECED7B42CFF8522006374E9 /* HomeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailView.swift; sourceTree = "<group>"; };
+		CED9CACF2D29967700B2686D /* TabbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarView.swift; sourceTree = "<group>"; };
+		CEDE3C332D0AEF48004A2E01 /* Locator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locator.swift; sourceTree = "<group>"; };
 		CEE7F5BF2D030C7F007CD8D0 /* CameraAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAssembly.swift; sourceTree = "<group>"; };
 		CEE7F5C32D030F6B007CD8D0 /* TranslateAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateAssembly.swift; sourceTree = "<group>"; };
 		CEE7F5C52D031084007CD8D0 /* TranslateModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateModels.swift; sourceTree = "<group>"; };
@@ -223,7 +227,7 @@
 				CE0EE1EF2C91D1E4003C4E19 /* Coordinator */,
 				CE0EE1DB2C91D0A8003C4E19 /* AppDelegate.swift */,
 				CE0EE1DD2C91D0A8003C4E19 /* SceneDelegate.swift */,
-				CE0EE1E42C91D0AB003C4E19 /* Assets.xcassets */,
+				CEDE3C352D0C5F07004A2E01 /* Resurces */,
 				CE0EE1E62C91D0AB003C4E19 /* LaunchScreen.storyboard */,
 				CE0EE1E92C91D0AB003C4E19 /* Info.plist */,
 			);
@@ -299,6 +303,7 @@
 				CE17501F2CA2BD22003FF3AC /* DP_CustomTabBar.swift */,
 				CE1750212CA2BD5A003FF3AC /* DP_TabBarController.swift */,
 				CE1750232CA2BDB6003FF3AC /* DP_TabBarSelectedItem.swift */,
+				CED9CACF2D29967700B2686D /* TabbarView.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -391,6 +396,7 @@
 				CE5ED6202C9C26AA0077DB35 /* FileManager */,
 				CEC35B992D0334B400913543 /* ImageService */,
 				CEC35B972D03348C00913543 /* DIContainer.swift */,
+				CEDE3C332D0AEF48004A2E01 /* Locator.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -478,7 +484,6 @@
 		CE5ED6442C9CAC0C0077DB35 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CE5ED6452C9CAC330077DB35 /* DP_Colors.swift */,
 				CE3B72AB2C9D729800798798 /* DP_BaseGradientView.swift */,
 				CE3B72B72C9D7F8A00798798 /* TabBarItem */,
 				CE17501A2CA183FC003FF3AC /* DP_HomeMenuEvent.swift */,
@@ -568,6 +573,23 @@
 				CECD8D042CABEDE8003ADDD1 /* CameraControlView.swift */,
 			);
 			path = SubViews;
+			sourceTree = "<group>";
+		};
+		CEDE3C352D0C5F07004A2E01 /* Resurces */ = {
+			isa = PBXGroup;
+			children = (
+				CEDE3C362D0C5FA7004A2E01 /* Colors */,
+				CE0EE1E42C91D0AB003C4E19 /* Assets.xcassets */,
+			);
+			path = Resurces;
+			sourceTree = "<group>";
+		};
+		CEDE3C362D0C5FA7004A2E01 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				CE5ED6452C9CAC330077DB35 /* DP_Colors.swift */,
+			);
+			path = Colors;
 			sourceTree = "<group>";
 		};
 		CEE7F5C72D03108D007CD8D0 /* Models */ = {
@@ -747,6 +769,7 @@
 				CE6DCEE92CB7DD05006B63DA /* CameraManager.swift in Sources */,
 				CEF472822CEF93B900C3BA6D /* ListPhotocellViewModel.swift in Sources */,
 				CE0EE1F12C91D1FE003C4E19 /* AplicationCoordinator.swift in Sources */,
+				CED9CAD02D29967700B2686D /* TabbarView.swift in Sources */,
 				CEC35B982D03348C00913543 /* DIContainer.swift in Sources */,
 				CE0EE2112C9339FA003C4E19 /* HomeDetailCoordinator.swift in Sources */,
 				CECED7AD2CF8B3F5006374E9 /* TranslateInterfaces.swift in Sources */,
@@ -770,6 +793,7 @@
 				CEC35B9B2D03352400913543 /* ImageService.swift in Sources */,
 				CECD8D052CABEDE8003ADDD1 /* CameraControlView.swift in Sources */,
 				CEC35BA72D037C1900913543 /* TranslateManager.swift in Sources */,
+				CEDE3C342D0AEF48004A2E01 /* Locator.swift in Sources */,
 				CEC35BA92D037C3600913543 /* TranslateManagerImplementation.swift in Sources */,
 				CECED7A92CF63B29006374E9 /* HomeInterfaces.swift in Sources */,
 				CE1750292CA6EF1E003FF3AC /* LanguagePickerWheel.swift in Sources */,
